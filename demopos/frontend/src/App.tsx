@@ -1,14 +1,14 @@
 import React from "react";
 import { Button } from "@mui/material";
+import { Routes } from "react-router-dom";
 
 type Props = {};
 
 export default function App({}: Props) {
-  return (
-    <div>
-      <Button variant="text">Text</Button>
-      <Button variant="contained">Contained</Button>
-      <Button variant="outlined">Outlined</Button>
-    </div>
-  );
+  return <div>
+
+    <Routes>
+      
+    </Routes>
+  </div>;
 }
