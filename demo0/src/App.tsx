@@ -5,10 +5,10 @@ export default function App() {
 
   return (
     <>
-      <div>Lek CodeMobiles {lek}</div>
+      <div>Lek CodeMobiles {count}</div>
       <button
         onClick={() => {
-          dog(lek + 1);
+          setCount(count + 1);
         }}
       >
         Add
