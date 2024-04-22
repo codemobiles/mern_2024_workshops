@@ -15,16 +15,22 @@ export default function LoginPage() {
         type="text"
         name="username"
         id="username"
-        placeholder="Username" 
-        value={account.username}
+        placeholder="Username"
         onChange={(e) => {
-          console.log(e.target.value);
           account = { ...account, username: e.target.value };
         }}
       />
 
       <br />
-      <input type="password" name="password" id="password" placeholder="Password" value={account.password} />
+      <input
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Password"
+        onChange={(e) => {
+          account = { ...account, password: e.target.value };
+        }}
+      />
 
       <br />
 
