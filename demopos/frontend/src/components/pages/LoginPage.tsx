@@ -7,8 +7,8 @@ type User = {
   password: string;
 };
 export default function LoginPage() {
-  const { control, handleSubmit } = useForm<User>({
-    defaultValues: { username: "", password: "" },
+  const { control, handleSubmit, reset } = useForm<User>({
+    defaultValues: { username: "admin", password: "1234" },
   });
 
   return (
@@ -39,7 +39,7 @@ export default function LoginPage() {
       </Button>
       <br />
       <br />
-      <Button type="button" fullWidth variant="text">
+      <Button type="button" fullWidth variant="text" onClick={() => reset()}>
         Clear
       </Button>
     </form>
