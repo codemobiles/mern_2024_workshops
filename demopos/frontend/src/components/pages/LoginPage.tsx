@@ -8,7 +8,7 @@ type User = {
 export default function LoginPage() {
   let account: User = { username: "admin", password: "1234" };
   return (
-    <div>
+    <form onSubmit={() => alert(JSON.stringify(account))}>
       <b>Login</b>
       <br />
       <input
@@ -34,14 +34,14 @@ export default function LoginPage() {
 
       <br />
 
-      <Button fullWidth variant="contained" onClick={() => alert(JSON.stringify(account))}>
+      <Button type="submit" fullWidth variant="contained">
         Login
       </Button>
       <br />
       <br />
-      <Button fullWidth variant="text">
+      <Button type="button" fullWidth variant="text">
         Clear
       </Button>
-    </div>
+    </form>
   );
 }
