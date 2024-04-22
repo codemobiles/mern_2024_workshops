@@ -1,9 +1,8 @@
-import React from 'react'
 
-type Props = {}
 
-export default function App({}: Props) {
+
+export default function App() {
   return (
-    <div>App</div>
+    <div>Lek CodeMobiles 1234</div>
   )
 }
