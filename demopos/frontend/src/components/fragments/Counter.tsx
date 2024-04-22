@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React from "react";
 
 type Props = {
@@ -5,5 +6,9 @@ type Props = {
 };
 
 export default function Counter(props: Props) {
-  return <div>Counter: {props.value}</div>;
+  return (
+    <div>
+      <Button variant="contained">Add: {props.value} </Button>
+    </div>
+  );
 }
