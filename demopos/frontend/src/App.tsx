@@ -23,6 +23,7 @@ import LoginPage from "./components/pages/LoginPage";
 import RegisterPage from "./components/pages/RegisterPage";
 import Header from "./components/layouts/Header";
 import Menu from "./components/layouts/Menu";
+import Counter from "./components/fragments/Counter";
 
 const drawerWidth = 240;
 
@@ -95,6 +96,7 @@ export default function App() {
       <Main open={open}>
         <DrawerHeader />
         <div>
+          <Counter />
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
