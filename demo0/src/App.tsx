@@ -1,4 +1,5 @@
 import BasicButtons from "./components/BasicButtons";
+import BasicTable from "./components/BasicTable";
 import Intro from "./components/Intro";
 
 export default function App() {
@@ -7,5 +8,6 @@ export default function App() {
   // const tmp2: string = "hey";
 
   // return <Intro />;
-  return <BasicButtons />;
+  // return <BasicButtons />;
+  return <BasicTable />;
 }
