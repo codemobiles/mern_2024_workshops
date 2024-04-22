@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Intro() {
+export default function Intro() {
   const [count, setCount] = useState<number>(0);
   return (
     <>

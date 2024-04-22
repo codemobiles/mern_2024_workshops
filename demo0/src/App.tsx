@@ -1,4 +1,4 @@
-import { Intro } from "./components/Intro";
+import Intro from "./components/Intro";
 
 export default function App() {
   // const tmp0 = true; // implicit declation
