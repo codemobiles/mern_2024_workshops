@@ -1,3 +1,4 @@
+import BasicButtons from "./components/BasicButtons";
 import Intro from "./components/Intro";
 
 export default function App() {
@@ -5,5 +6,6 @@ export default function App() {
   // const tmp1: number = 0; // explicit declation
   // const tmp2: string = "hey";
 
-  return <Intro />;
+  // return <Intro />;
+  return <BasicButtons />;
 }
