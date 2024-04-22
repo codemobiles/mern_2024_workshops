@@ -1,14 +1,24 @@
 import { Button, TextField } from "@mui/material";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 type User = {
   username: string;
   password: string;
 };
+
+const formValidateSchema = Yup.object().shape({
+  // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
+  username: Yup.string().min(4).required("Username must be more than 3 letters").trim(),
+  password: Yup.string().required("Password is required").trim(),
+});
+
 export default function LoginPage() {
   const { control, handleSubmit, reset } = useForm<User>({
     defaultValues: { username: "admin", password: "1234" },
+    resolver: yupResolver(formValidateSchema),
   });
 
   return (
@@ -19,7 +29,7 @@ export default function LoginPage() {
         control={control}
         name="username"
         render={({ field }) => {
-          return <TextField {...field} variant="filled" placeholder="Username" error />;
+          return <TextField {...field} variant="filled" placeholder="Username" error helperText="Require username" />;
         }}
       />
 
