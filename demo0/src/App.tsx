@@ -8,6 +8,7 @@ export default function App() {
       <button
         onClick={() => {
           count++;
+          console.log("count: " + count.toString());
         }}
       >
         Add
