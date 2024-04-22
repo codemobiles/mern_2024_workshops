@@ -1,7 +1,12 @@
 import { Button } from "@mui/material";
 import React from "react";
 
+type User = {
+  username: string;
+  password: string;
+};
 export default function LoginPage() {
+  const account: User = { username: "admin", password: "1234" };
   return (
     <div>
       <b>Login</b>
@@ -13,7 +18,7 @@ export default function LoginPage() {
 
       <br />
 
-      <Button fullWidth variant="contained">
+      <Button fullWidth variant="contained" onClick={() => alert(JSON.stringify(account))}>
         Login
       </Button>
       <br />
