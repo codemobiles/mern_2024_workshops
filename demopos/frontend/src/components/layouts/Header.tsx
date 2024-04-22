@@ -29,13 +29,7 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-export default function Header() {
-  const [open, setOpen] = React.useState(true);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
+export default function Header({ open, handleDrawerOpen }: { open: boolean; handleDrawerOpen: () => void }) {
   return (
     <AppBar position="fixed" open={open}>
       <Toolbar>
