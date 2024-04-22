@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -19,16 +19,17 @@ export default function LoginPage() {
         control={control}
         name="username"
         render={({ field }) => {
-          return <input type="text" {...field} placeholder="Username" />;
+          return <TextField {...field} variant="filled" placeholder="Username" error />;
         }}
       />
 
+      <br />
       <br />
       <Controller
         control={control}
         name="password"
         render={({ field }) => {
-          return <input type="text" {...field} placeholder="Password" />;
+          return <TextField {...field} variant="filled" placeholder="Username" />;
         }}
       />
 
