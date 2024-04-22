@@ -79,6 +79,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function App() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+  const [count, setCount] = React.useState(1);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -96,7 +97,7 @@ export default function App() {
       <Main open={open}>
         <DrawerHeader />
         <div>
-          <Counter value={1} />
+          <Counter value={count} />
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
