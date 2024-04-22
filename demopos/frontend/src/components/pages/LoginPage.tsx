@@ -16,7 +16,12 @@ const formValidateSchema = Yup.object().shape({
 });
 
 export default function LoginPage() {
-  const { control, handleSubmit, reset } = useForm<User>({
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<User>({
     defaultValues: { username: "admin", password: "1234" },
     resolver: yupResolver(formValidateSchema),
   });
@@ -29,7 +34,7 @@ export default function LoginPage() {
         control={control}
         name="username"
         render={({ field }) => {
-          return <TextField {...field} variant="filled" placeholder="Username" error helperText="Require username" />;
+          return <TextField {...field} variant="filled" placeholder="Username" error={Boolean(errors.username)} helperText={errors.username?.message} />;
         }}
       />
 
