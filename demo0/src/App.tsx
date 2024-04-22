@@ -1,14 +1,15 @@
+import { useState } from "react";
+
 export default function App() {
-  let count = 0;
+  const [count1, setCount1] = useState(0);
 
   // JSX => Javascript + XML
   return (
     <>
-      <div>Lek CodeMobiles {count}</div>
+      <div>Lek CodeMobiles {count1}</div>
       <button
         onClick={() => {
-          count++;
-          console.log("count: " + count.toString());
+          setCount1(count1 + 1);
         }}
       >
         Add
