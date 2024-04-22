@@ -1,21 +1,17 @@
-import loginBg from "@/assets/images/bg4.jpg";
+import loginBg from "../../assets/react.svg";
 
-
-
-import { User } from "@/types/user.type";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Icons from "@mui/icons-material/";
 import { Box, InputAdornment } from "@mui/material";
-import Alert from "@mui/material/Alert";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { Controller, useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { User } from "../../types/user.type";
 
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
@@ -24,8 +20,6 @@ const formValidateSchema = Yup.object().shape({
 });
 
 const Login = () => {
-  const dispatch = useAppDispatch(); // used to call actions
-  const authReducer = useSelector(authSelector); // used to access state
   const navigate = useNavigate();
 
   const classes: any = {
@@ -45,10 +39,7 @@ const Login = () => {
   });
 
   const onSubmit = async (values: User) => {
-    const result = await dispatch(login(values));
-    if (login.fulfilled.match(result)) {
-      navigate("/stock");
-    }
+    alert(JSON.stringify(values));
   };
 
   const showForm = () => {
@@ -103,11 +94,9 @@ const Login = () => {
           )}
         ></Controller>
 
-        {authReducer.isError && <Alert severity="error">Login failed</Alert>}
-
-        <CMButton isGraident={true} sx={classes.submitBtn} type="submit" fullWidth variant="contained" color="primary">
+        <Button sx={classes.submitBtn} type="submit" fullWidth variant="contained" color="primary">
           Login
-        </CMButton>
+        </Button>
 
         <Button
           onClick={() => {
