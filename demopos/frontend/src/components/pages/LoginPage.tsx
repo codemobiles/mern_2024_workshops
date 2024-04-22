@@ -12,13 +12,25 @@ export default function LoginPage() {
   });
 
   return (
-    <form>
+    <form onSubmit={handleSubmit((result) => alert(JSON.stringify(result)))}>
       <b>Login</b>
       <br />
-      <input type="text" name="username" id="username" placeholder="Username" onChange={(e) => {}} />
+      <Controller
+        control={control}
+        name="username"
+        render={({ field }) => {
+          return <input type="text" {...field} placeholder="Username" />;
+        }}
+      />
 
       <br />
-      <input type="password" name="password" id="password" placeholder="Password" onChange={(e) => {}} />
+      <Controller
+        control={control}
+        name="password"
+        render={({ field }) => {
+          return <input type="text" {...field} placeholder="Password" />;
+        }}
+      />
 
       <br />
 
