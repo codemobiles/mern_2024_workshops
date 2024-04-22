@@ -1,8 +1,4 @@
-
-
-
 export default function App() {
-  return (
-    <div>Lek CodeMobiles 1234</div>
-  )
+  // JSX => Javascript + XML
+  return <div>Lek CodeMobiles {Date.now()}</div>;
 }
