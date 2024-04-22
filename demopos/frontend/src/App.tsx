@@ -24,6 +24,7 @@ import RegisterPage from "./components/pages/RegisterPage";
 import Header from "./components/layouts/Header";
 import Menu from "./components/layouts/Menu";
 import Counter from "./components/fragments/Counter";
+import { Container } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -95,20 +96,16 @@ export default function App() {
       {false && <Header open={open} handleDrawerOpen={handleDrawerOpen} />}
       {false && <Menu open={open} handleDrawerClose={handleDrawerClose} />}
       <Main open={open}>
-        <DrawerHeader />
-        <div>
-          <Counter
-            value={count}
-            onAdded={() => {
-              setCount(count + 1);
-            }}
-          />
-          <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/" element={<Navigate to="/login" />} />
-          </Routes>
-        </div>
+        <Container>
+          <DrawerHeader />
+          <div>
+            <Routes>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/" element={<Navigate to="/login" />} />
+            </Routes>
+          </div>
+        </Container>
       </Main>
     </Box>
   );
