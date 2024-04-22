@@ -1,4 +1,4 @@
-import loginBg from "../../assets/react.svg";
+import loginBg from "../../assets/images/bg4.jpg";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Icons from "@mui/icons-material/";
