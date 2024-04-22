@@ -15,7 +15,7 @@ export default function Counter(props: Props) {
           props.onAdded();
         }}
       >
-        Add: {props.value}{" "}
+        Add: {props.value}
       </Button>
     </div>
   );

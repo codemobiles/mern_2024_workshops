@@ -97,7 +97,12 @@ export default function App() {
       <Main open={open}>
         <DrawerHeader />
         <div>
-          <Counter value={count} />
+          <Counter
+            value={count}
+            onAdded={() => {
+              setCount(count + 1);
+            }}
+          />
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
