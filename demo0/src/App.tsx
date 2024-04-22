@@ -1,5 +1,5 @@
 export default function App() {
-  const count = 0;
+  let count = 0;
 
   // JSX => Javascript + XML
   return (
@@ -7,7 +7,7 @@ export default function App() {
       <div>Lek CodeMobiles {count}</div>
       <button
         onClick={() => {
-          alert("Hey");
+          count++;
         }}
       >
         Add
