@@ -1,9 +1,18 @@
+import { useState } from "react";
+
 export default function App() {
-  // JSX => Javascript + XML
+  const [count, setCount] = useState(0);
+
   return (
     <>
-      <div>Lek CodeMobiles {}</div>
-      <button onClick={() => {}}>Add</button>
+      <div>Lek CodeMobiles {lek}</div>
+      <button
+        onClick={() => {
+          dog(lek + 1);
+        }}
+      >
+        Add
+      </button>
     </>
   );
 }
