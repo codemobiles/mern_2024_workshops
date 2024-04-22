@@ -1,11 +1,16 @@
 import { Button } from "@mui/material";
 import React from "react";
+import { Controller, useForm } from "react-hook-form";
 
 type User = {
   username: string;
   password: string;
 };
 export default function LoginPage() {
+  const { control, handleSubmit } = useForm<User>({
+    defaultValues: { username: "", password: "" },
+  });
+
   return (
     <form>
       <b>Login</b>
