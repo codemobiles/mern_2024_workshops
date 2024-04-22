@@ -96,7 +96,7 @@ export default function App() {
       <Main open={open}>
         <DrawerHeader />
         <div>
-          <Counter />
+          <Counter value={2} />
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
