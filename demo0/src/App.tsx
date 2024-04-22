@@ -1,4 +1,12 @@
 export default function App() {
+  const count = 0;
+
   // JSX => Javascript + XML
-  return <div>Lek CodeMobiles {Date.now()}</div>;
+  return (
+    <div>
+      <div>Lek CodeMobiles {count}</div>
+      <div>Lek CodeMobiles {count}</div>
+      <div>Lek CodeMobiles {count}</div>
+    </div>
+  );
 }
