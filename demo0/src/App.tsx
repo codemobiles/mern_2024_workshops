@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Intro } from "./components/Intro";
 
 export default function App() {
   // const tmp0 = true; // implicit declation
