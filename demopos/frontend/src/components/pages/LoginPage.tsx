@@ -28,7 +28,7 @@ export default function LoginPage() {
 
   return (
     <form onSubmit={handleSubmit((result) => alert(JSON.stringify(result)))}>
-      <b>Login</b>
+      <b className="text-red-600 underline">Login</b>
       <br />
       <Controller
         control={control}
