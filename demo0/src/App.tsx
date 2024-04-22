@@ -1,7 +1,10 @@
 import { useState } from "react";
 
 export default function App() {
-  const [count, setCount] = useState(0);
+  const tmp0 = true // implicit declation
+  const tmp1: number = 0; // explicit declation
+  const tmp2: string = "";
+  const [count, setCount] = useState<number>(0);
 
   return (
     <>
