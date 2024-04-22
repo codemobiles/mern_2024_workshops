@@ -3,10 +3,15 @@ export default function App() {
 
   // JSX => Javascript + XML
   return (
-    <div>
+    <>
       <div>Lek CodeMobiles {count}</div>
-      <div>Lek CodeMobiles {count}</div>
-      <div>Lek CodeMobiles {count}</div>
-    </div>
+      <button
+        onClick={() => {
+          alert("Hey");
+        }}
+      >
+        Add
+      </button>
+    </>
   );
 }
