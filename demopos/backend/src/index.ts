@@ -3,6 +3,16 @@ import { Request, Response } from "express";
 import { AppDataSource } from "./data-source";
 import { Routes } from "./routes";
 import * as cors from "cors";
+import { exit } from "process";
+
+// Check ROOT_PATH
+console.log("echo $ROOT_PATH: " + process.env.ROOT_PATH);
+if (!process.env.ROOT_PATH) {
+  console.log("Please set ROOT_PATH first");
+  console.log("for mac: export ROOT_PATH=$(pwd)");
+  console.log("for win: set ROOT_PATH=%cd%");
+  exit(0);
+}
 
 AppDataSource.initialize()
   .then(async () => {
@@ -10,6 +20,8 @@ AppDataSource.initialize()
     const app = express();
     app.use(express.json());
     app.use(cors());
+    console.log("ROOT_PATH: " + process.env.ROOT_PATH);
+    app.use(express.static(process.env.ROOT_PATH + "/uploaded"));
 
     // register express routes from defined application routes
     Routes.forEach((route) => {
