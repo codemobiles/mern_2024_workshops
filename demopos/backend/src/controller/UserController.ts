@@ -5,5 +5,7 @@ import { Users } from "../entity/Users";
 export class UserController {
   private userRepository = AppDataSource.getMongoRepository(Users);
 
-  async register(req: Request, res: Response, next: NextFunction) {}
+  async register(req: Request, res: Response, next: NextFunction) {
+    return { result: "1234" };
+  }
 }
