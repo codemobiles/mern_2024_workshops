@@ -12,7 +12,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { User } from "../../types/user.type";
-
+import axios from "axios";
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
   username: Yup.string().min(4).required("Username must be more than 3 letters").trim(),
@@ -28,7 +28,7 @@ const Register = () => {
     canelBtn: { marginTop: 2 },
   };
 
-  const initialValue: User = { username: "admin", password: "1234" };
+  const initialValue: User = { username: "admin1", password: "1234" };
   const {
     control,
     handleSubmit,
@@ -39,7 +39,8 @@ const Register = () => {
   });
 
   const onSubmit = async (values: User) => {
-    alert(JSON.stringify(values));
+    const result = await axios.post("http://localhost:8081/api/v2/register", values);
+    alert(JSON.stringify(result.data));
   };
 
   const showForm = () => {
