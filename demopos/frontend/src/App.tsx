@@ -25,6 +25,12 @@ import Header from "./components/layouts/Header";
 import Menu from "./components/layouts/Menu";
 import Counter from "./components/fragments/Counter";
 import { Container } from "@mui/material";
+import ReportPage from "./components/pages/ReportPage";
+import ShopPage from "./components/pages/ShopPage";
+import StockCreatePage from "./components/pages/StockCreatePage";
+import StockEditPage from "./components/pages/StockEditPage";
+import StockPage from "./components/pages/StockPage";
+import TransactionPage from "./components/pages/TransactionPage";
 
 const drawerWidth = 240;
 
@@ -102,6 +108,13 @@ export default function App() {
             <Routes>
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
+              <Route path="/shop" element={<ShopPage />} />
+              <Route path="/stock" element={<StockPage />} />
+              <Route path="/report" element={<ReportPage />} />
+              <Route path="/stock/create" element={<StockCreatePage />} />
+              <Route path="/stock/edit/:id" element={<StockEditPage />} />
+              <Route path="/report" element={<ReportPage />} />
+              <Route path="/transaction" element={<TransactionPage />} />
               <Route path="/" element={<Navigate to="/login" />} />
             </Routes>
           </div>
