@@ -116,6 +116,7 @@ export default function App() {
               <Route path="/report" element={<ReportPage />} />
               <Route path="/transaction" element={<TransactionPage />} />
               <Route path="/" element={<Navigate to="/login" />} />
+              <Route path="*" element={<Navigate to="/login" />} />
             </Routes>
           </div>
         </Container>
