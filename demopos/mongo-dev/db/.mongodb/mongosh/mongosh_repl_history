@@ -1,4 +1,7 @@
 db.users.find()
+db.users.findOneAndDelete({ _id: ObjectId('66275b0963b6c3dad9c75bec')})
+db.users.findOneAndDelete({ _id: ObjectId('6627596ced3d92ef624c4fe7')})
+db.users.find()
 cls
 db.users.find()
 show collections
