@@ -1,6 +1,9 @@
 db.users.find()
 show collections
 use demopos
+db.users.find()
+show collections
+use demopos
 show dbs
 cls
 show dbs

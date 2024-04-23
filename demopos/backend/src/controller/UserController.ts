@@ -9,6 +9,10 @@ export class UserController {
     return this.userRepository.find();
   }
 
+  test(request: Request, response: Response, next: NextFunction) {
+    return "Hello, My name is lek";
+  }
+
   async one(request: Request, response: Response, next: NextFunction) {
     const id = parseInt(request.params.id);
 
