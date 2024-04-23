@@ -98,6 +98,9 @@ const Login = () => {
           Login
         </Button>
 
+        {/* Separator */}
+        <Box sx={{ height: 10 }} />
+
         <Button
           onClick={() => {
             navigate("/register");
