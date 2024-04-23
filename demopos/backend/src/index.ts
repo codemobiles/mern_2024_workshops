@@ -1,5 +1,4 @@
 import * as express from "express";
-import * as bodyParser from "body-parser";
 import { Request, Response } from "express";
 import { AppDataSource } from "./data-source";
 import { Routes } from "./routes";
@@ -8,7 +7,7 @@ AppDataSource.initialize()
   .then(async () => {
     // create express app
     const app = express();
-    app.use(bodyParser.json());
+    app.use(express.json());
 
     // register express routes from defined application routes
     Routes.forEach((route) => {

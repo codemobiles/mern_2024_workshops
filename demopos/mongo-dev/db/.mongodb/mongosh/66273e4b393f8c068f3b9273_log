@@ -27,3 +27,7 @@
 {"t":{"$date":"2024-04-23T06:07:44.662Z"},"s":"I","c":"MONGOSH","id":1000000009,"ctx":"shell-api","msg":"Used \"show\" command","attr":{"method":"show collections"}}
 {"t":{"$date":"2024-04-23T06:08:01.968Z"},"s":"I","c":"MONGOSH","id":1000000007,"ctx":"repl","msg":"Evaluating input","attr":{"input":"db.users.find()"}}
 {"t":{"$date":"2024-04-23T06:08:01.971Z"},"s":"I","c":"MONGOSH","id":1000000011,"ctx":"shell-api","msg":"Performed API call","attr":{"method":"find","class":"Collection","db":"demopos","coll":"users","arguments":{"options":{}}}}
+{"t":{"$date":"2024-04-23T06:46:39.516Z"},"s":"I","c":"MONGOSH","id":1000000007,"ctx":"repl","msg":"Evaluating input","attr":{"input":"db.users.find()"}}
+{"t":{"$date":"2024-04-23T06:46:39.518Z"},"s":"I","c":"MONGOSH","id":1000000011,"ctx":"shell-api","msg":"Performed API call","attr":{"method":"find","class":"Collection","db":"demopos","coll":"users","arguments":{"options":{}}}}
+{"t":{"$date":"2024-04-23T06:47:28.310Z"},"s":"I","c":"MONGOSH","id":1000000007,"ctx":"repl","msg":"Evaluating input","attr":{"input":"db.users.find()"}}
+{"t":{"$date":"2024-04-23T06:47:28.312Z"},"s":"I","c":"MONGOSH","id":1000000011,"ctx":"shell-api","msg":"Performed API call","attr":{"method":"find","class":"Collection","db":"demopos","coll":"users","arguments":{"options":{}}}}

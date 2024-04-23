@@ -6,6 +6,7 @@ export class UserController {
   private userRepository = AppDataSource.getMongoRepository(Users);
 
   async register(req: Request, res: Response, next: NextFunction) {
-    return { result: "1234" };
+    const doc = await this.userRepository.save(req.body);
+    return { result: "ok", message: doc };
   }
 }

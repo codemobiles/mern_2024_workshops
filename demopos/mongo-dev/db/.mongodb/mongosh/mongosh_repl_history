@@ -1,4 +1,6 @@
 db.users.find()
+cls
+db.users.find()
 show collections
 use demopos
 db.users.find()
