@@ -1,7 +1,7 @@
 import { ProductController } from "./controller/ProductController";
 import { UserController } from "./controller/UserController";
 
-export const Routes = [
+export const authRoutes = [
   {
     method: "post",
     route: "/register",
@@ -21,3 +21,5 @@ export const Routes = [
     action: "all",
   },
 ];
+
+export const Routes = [...authRoutes];
