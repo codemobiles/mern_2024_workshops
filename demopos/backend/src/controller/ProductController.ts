@@ -8,5 +8,7 @@ import { Products } from "../entity/Products";
 export class ProductController {
   private productRepo = AppDataSource.getMongoRepository(Products);
 
-  async all(req: Request, res: Response, next: NextFunction) {}
+  async all(req: Request, res: Response, next: NextFunction) {
+    return await this.productRepo.find();
+  }
 }
