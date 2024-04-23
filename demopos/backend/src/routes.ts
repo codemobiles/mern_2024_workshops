@@ -22,4 +22,13 @@ export const authRoutes = [
   },
 ];
 
-export const Routes = [...authRoutes];
+export const productRoutes = [
+  {
+    method: "get",
+    route: "/products",
+    controller: ProductController,
+    action: "all",
+  },
+];
+
+export const Routes = [...authRoutes, ...productRoutes];
