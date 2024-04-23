@@ -23,6 +23,7 @@ export class UserController {
 
   async login(req: Request, res: Response, next: NextFunction) {
     try {
+      // destructuring
       const { username, password } = req.body;
 
       let doc = await this.userRepository.findOne({
@@ -37,7 +38,7 @@ export class UserController {
             level: doc.level,
             username: doc.username,
           };
-          let token = "1234" //jwt.sign(payload);
+          let token = "1234"; //jwt.sign(payload);
 
           return { result: "ok", token, message: "success" };
         } else {

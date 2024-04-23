@@ -7,4 +7,10 @@ export const Routes = [
     controller: UserController,
     action: "register",
   },
+  {
+    method: "post",
+    route: "/login",
+    controller: UserController,
+    action: "login",
+  },
 ];
