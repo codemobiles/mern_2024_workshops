@@ -98,7 +98,16 @@ const Register = () => {
           Create
         </Button>
 
-        <Button onClick={() => {}} type="button" fullWidth variant="outlined" className="border-dashed border-1 border-gray-300 mt-4" color="primary">
+        <Button
+          onClick={() => {
+            navigate("/login");
+          }}
+          type="button"
+          fullWidth
+          variant="outlined"
+          className="border-dashed border-1 border-gray-300 mt-4"
+          color="primary"
+        >
           Cancel
         </Button>
       </form>
