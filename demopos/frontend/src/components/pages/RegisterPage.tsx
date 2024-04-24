@@ -14,6 +14,7 @@ import * as Yup from "yup";
 import { User } from "../../types/user.type";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
   username: Yup.string().min(4).required("Username must be more than 3 letters").trim(),
@@ -22,7 +23,7 @@ const formValidateSchema = Yup.object().shape({
 
 const Register = () => {
   const navigate = useNavigate();
-  const authReducer = useSelector((state: any) => state.authReducer);
+  const authReducer = useSelector((state: RootState) => state.authReducer);
 
   const classes: any = {
     root: { display: "flex", justifyContent: "center", alignItems: "center" },
