@@ -24,8 +24,13 @@ export const login = createAsyncThunk("auth/login", async (user: User) => {
   throw Error();
 });
 
-export const register = createAsyncThunk("authe/register", (user: User) => {
-  
+export const register = createAsyncThunk("authe/register", async (user: User) => {
+  const result = await httpClient.post<RegisterResult>(server.REGISTER_URL, user);
+  if (result.data.result === "ok") {
+    return result.data;
+  }
+
+  throw Error();
 });
 
 const initialState: AuthState = {
