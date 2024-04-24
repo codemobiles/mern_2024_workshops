@@ -14,8 +14,9 @@ import * as Yup from "yup";
 import { User } from "../../types/user.type";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { add, addAsync, authSelector, del, delAsync } from "@/store/slices/authSlice";
+
 import { useAppDispatch } from "@/store/store";
+import { add, addAsync, counterSelector, del, delAsync } from "@/store/slices/counterSlice";
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
   username: Yup.string().min(4).required("Username must be more than 3 letters").trim(),
@@ -24,7 +25,7 @@ const formValidateSchema = Yup.object().shape({
 
 const Register = () => {
   const navigate = useNavigate();
-  const authReducer = useSelector(authSelector);
+  const counterReducer = useSelector(counterSelector);
   const dispatch = useAppDispatch();
 
   const classes: any = {
@@ -131,7 +132,7 @@ const Register = () => {
             ADEL
           </Button>
           <Button onClick={() => dispatch(del())}>DEL</Button>
-          <Typography>{authReducer.count}</Typography>
+          <Typography>{counterReducer.count}</Typography>
           <Button onClick={() => dispatch(add())}>ADD</Button>
           <Button variant="contained" onClick={() => dispatch(addAsync())}>
             AADD
