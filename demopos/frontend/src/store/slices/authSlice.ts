@@ -42,7 +42,12 @@ const initialState: AuthState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      localStorage.clear();
+      state.isAuthented = false;
+    },
+  },
   extraReducers: (builder) => {
     // Login Success
     builder.addCase(login.fulfilled, (state, action) => {
@@ -87,5 +92,6 @@ const authSlice = createSlice({
   },
 });
 
+export const { logout } = authSlice.actions;
 export const authSelector = (state: RootState) => state.authReducer;
 export default authSlice.reducer;
