@@ -14,6 +14,7 @@ export interface AuthState {
 }
 
 export const login = createAsyncThunk("auth/login", async (user: User) => {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   const result = await httpClient.post(server.LOGIN_URL, user);
   if (result.data.result === "ok") {
     const { token } = result.data;
