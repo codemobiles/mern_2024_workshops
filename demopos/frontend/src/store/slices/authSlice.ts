@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { LoginResult, RegisterResult } from "@/types/auth-result.type";
 import { User } from "@/types/user.type";
+import { httpClient } from "@/utils/HttpClient";
+import { apiUrl, server } from "@/utils/constants";
 
 export interface AuthState {
   loginResult?: LoginResult;
@@ -11,8 +13,9 @@ export interface AuthState {
   isError: boolean;
 }
 
-export const login = (user: User) => {
-  
+export const login = async (user: User) => {
+  const result = await httpClient.post(server.LOGIN_URL, user);
+  return result.data;
 };
 
 const initialState: AuthState = {
