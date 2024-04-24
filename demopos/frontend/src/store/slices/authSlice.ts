@@ -3,7 +3,7 @@ import { RootState } from "../store";
 import { LoginResult, RegisterResult } from "@/types/auth-result.type";
 import { User } from "@/types/user.type";
 import { httpClient } from "@/utils/HttpClient";
-import { apiUrl, server } from "@/utils/constants";
+import { server } from "@/utils/constants";
 
 export interface AuthState {
   loginResult?: LoginResult;
