@@ -17,6 +17,7 @@ import { useSelector } from "react-redux";
 
 import { useAppDispatch } from "@/store/store";
 import { add, addAsync, counterSelector, del, delAsync } from "@/store/slices/counterSlice";
+import { authSelector, register } from "@/store/slices/authSlice";
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
   username: Yup.string().min(4).required("Username must be more than 3 letters").trim(),
@@ -26,6 +27,7 @@ const formValidateSchema = Yup.object().shape({
 const Register = () => {
   const navigate = useNavigate();
   const counterReducer = useSelector(counterSelector);
+  const authReducer = useSelector(authSelector);
   const dispatch = useAppDispatch();
 
   const classes: any = {
@@ -45,8 +47,11 @@ const Register = () => {
   });
 
   const onSubmit = async (values: User) => {
-    const result = await axios.post("http://localhost:8081/api/v2/register", values);
-    alert(JSON.stringify(result.data));
+    const result = await dispatch(register(values));
+    if (register.fulfilled.match(result)) {
+      alert("Register successfully");
+      navigate("/login1");
+    }
   };
 
   const showForm = () => {
