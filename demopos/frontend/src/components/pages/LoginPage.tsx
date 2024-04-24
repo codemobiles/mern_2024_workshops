@@ -104,7 +104,7 @@ const Login = () => {
           )}
         ></Controller>
 
-        <Button sx={classes.submitBtn} type="submit" fullWidth variant="contained" color="primary">
+        <Button disabled={authReducer.isAuthenticating} sx={classes.submitBtn} type="submit" fullWidth variant="contained" color="primary">
           Login
         </Button>
 
