@@ -108,7 +108,9 @@ const Register = () => {
         <Box sx={{ height: 10 }} />
 
         <Button
-          onClick={() => {
+          onClick={async () => {
+            /// Test
+            await new Promise((resolve) => setTimeout(resolve, 500));
             navigate("/login");
           }}
           type="button"
@@ -132,7 +134,7 @@ const Register = () => {
       </form>
     );
   };
-  
+
   return (
     <Box className="flex justify-center items-center">
       <Card className="max-w-[345px]">

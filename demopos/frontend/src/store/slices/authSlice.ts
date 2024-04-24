@@ -12,6 +12,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     add: (state) => {
+      // await new Promise((resolve) => setTimeout(resolve, 3000));
       state.count = state.count + 1;
     },
     del: (state) => {
