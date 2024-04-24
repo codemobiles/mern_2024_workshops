@@ -14,7 +14,8 @@ import * as Yup from "yup";
 import { User } from "../../types/user.type";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { authSelector } from "@/store/slices/authSlice";
+import { add, authSelector, del } from "@/store/slices/authSlice";
+import { useAppDispatch } from "@/store/store";
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
   username: Yup.string().min(4).required("Username must be more than 3 letters").trim(),
@@ -24,6 +25,7 @@ const formValidateSchema = Yup.object().shape({
 const Register = () => {
   const navigate = useNavigate();
   const authReducer = useSelector(authSelector);
+  const dispatch = useAppDispatch();
 
   const classes: any = {
     root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -123,14 +125,14 @@ const Register = () => {
 
         <Stack direction={"row"} justifyContent={"space-around"} alignItems={"center"}>
           {/* minus button */}
-          <Button>DEL</Button>
+          <Button onClick={() => dispatch(del())}>DEL</Button>
           <Typography>{authReducer.count}</Typography>
-          <Button>ADD</Button>
+          <Button onClick={() => dispatch(add())}>ADD</Button>
         </Stack>
       </form>
     );
   };
-
+  
   return (
     <Box className="flex justify-center items-center">
       <Card className="max-w-[345px]">
