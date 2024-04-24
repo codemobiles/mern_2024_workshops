@@ -2,6 +2,9 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+
+import * as Icons from "@mui/icons-material";
+
 import LayersIcon from "@mui/icons-material/Layers";
 import MailIcon from "@mui/icons-material/Mail";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
@@ -127,6 +130,14 @@ const Menu: React.FC<MenuProps> = ({ handleDrawerClose, open }) => {
         <ListItem component={MyNavLink} to="/transaction" button key="transaction" activeClassName="Mui-selected" exact>
           <ListItemIcon>
             <AttachMoneyIcon />
+          </ListItemIcon>
+          <ListItemText primary="Transaction" />
+        </ListItem>
+
+        {/* Transaction */}
+        <ListItem component={MyNavLink} to="/transaction" button key="transaction" activeClassName="Mui-selected" exact>
+          <ListItemIcon>
+            <Icons.AccessibilitySharp />
           </ListItemIcon>
           <ListItemText primary="Transaction" />
         </ListItem>
