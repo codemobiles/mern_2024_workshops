@@ -8,9 +8,17 @@ export default function StockPage({}: Props) {
     <div>
       StockPage
       <ul>
-        {courses.map((e) => (
-          <li key={e}>{e}</li>
-        ))}
+        {courses.map((e) => {
+          if (e == "React") {
+            return <li key={e}>{e}</li>;
+          } else {
+            return (
+              <li key={e} className="text-red-600">
+                {e}
+              </li>
+            );
+          }
+        })}
       </ul>
     </div>
   );
