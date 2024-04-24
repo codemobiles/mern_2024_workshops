@@ -1,8 +1,15 @@
-import React from "react";
+import { RootState, useAppDispatch } from "@/store/store";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 type Props = {};
 
 export default function StockPage({}: Props) {
+  const dispatch = useAppDispatch();
+  const stockReducer = useSelector(stockSelector);
+
+  useEffect(() => {}, []);
+
   const courses = ["Flutter", "React", "NextJS"];
   return (
     <div>
