@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 export interface AuthState {
@@ -6,6 +6,11 @@ export interface AuthState {
 }
 
 const initialState: AuthState = { count: 30 };
+
+export const addAsync = createAsyncThunk("addAsync", async () => {
+  // simulate doing somethings for 1 secs
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+});
 
 const authSlice = createSlice({
   name: "auth",
@@ -20,9 +25,13 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase("addAsync", (state) => {});
+    builder.addCase(addAsync.fulfilled, (state) => {
+      state.count = state.count + 1;
+    });
 
-    builder.addCase("delAsync", (state) => {});
+    // builder.addCase("delAsync", (state) => {
+    //   state.count = state.count - 1;
+    // });
   },
 });
 
