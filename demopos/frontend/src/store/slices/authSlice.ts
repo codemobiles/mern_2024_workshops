@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 export interface AuthState {
   count: number;
@@ -12,4 +13,5 @@ const authSlice = createSlice({
   reducers: {},
 });
 
+export const authSelector = (state: RootState) => state.authReducer
 export default authSlice.reducer;
