@@ -122,7 +122,7 @@ const Login = () => {
       <Card className="max-w-[345px]">
         <CardContent>
           <Typography gutterBottom variant="h5">
-            Login
+            Login {import.meta.env.VITE_VERSION}
           </Typography>
           {showForm()}
         </CardContent>
