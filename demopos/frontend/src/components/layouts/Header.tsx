@@ -1,4 +1,5 @@
 // import { logout } from "@/store/slices/authSlice";
+import { logout } from "@/store/slices/authSlice";
 import { useAppDispatch } from "@/store/store";
 import { AccountCircle } from "@mui/icons-material";
 import MailIcon from "@mui/icons-material/Mail";
@@ -81,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({ handleDrawerOpen, open }) => {
             aria-controls={menuId}
             aria-haspopup="true"
             onClick={async () => {
-              // dispatch(logout());
+              dispatch(logout());
               navigate("/login");
             }}
             color="inherit"

@@ -47,6 +47,17 @@ const authSlice = createSlice({
       localStorage.clear();
       state.isAuthented = false;
     },
+    relogin: (state: AuthState) => {
+      const _token = localStorage.getItem(server.TOKEN_KEY);
+      if (_token) {
+        state.loginResult = {
+          token: _token,
+          result: "ok",
+        };
+        state.isAuthented = true;
+      }
+      state.isAuthenticating = false;
+    },
   },
   extraReducers: (builder) => {
     // Login Success
