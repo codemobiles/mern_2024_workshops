@@ -24,6 +24,10 @@ export const login = createAsyncThunk("auth/login", async (user: User) => {
   throw Error();
 });
 
+export const register = createAsyncThunk("authe/register", (user: User) => {
+  
+});
+
 const initialState: AuthState = {
   isAuthenticating: true,
   isAuthented: false,
