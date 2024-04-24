@@ -1,4 +1,6 @@
+import { getProducts, stockSelector } from "@/store/slices/stockSlice";
 import { RootState, useAppDispatch } from "@/store/store";
+import { light } from "@mui/material/styles/createPalette";
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
@@ -8,24 +10,17 @@ export default function StockPage({}: Props) {
   const dispatch = useAppDispatch();
   const stockReducer = useSelector(stockSelector);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
 
-  const courses = ["Flutter", "React", "NextJS"];
   return (
     <div>
       StockPage
       <ul>
-        {courses.map((e) => {
-          if (e == "React") {
-            return <li key={e}>{e}</li>;
-          } else {
-            return (
-              <li key={e} className="text-red-600">
-                {e}
-              </li>
-            );
-          }
-        })}
+        {stockReducer.stockAllResult.map((e) => (
+          <li key={e._id}>{e.name}</li>
+        ))}
       </ul>
     </div>
   );
