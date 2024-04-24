@@ -18,17 +18,18 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
-  },
-  "baseUrl": "src",
-  "paths": {
-    "@/*": ["./src/*"],
-    "@/components/*": ["components/*"],
-    "@/types/*": ["types/*"],
-    "@/utils/*": ["utils/*"],
-    // "@/store/*": ["store/*"],
-    // "@/router/*": ["router/*"],
-    "@/assets/*": ["assets/*"]
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["components/*"],
+      "@/types/*": ["types/*"],
+      // "@/utils/*": ["utils/*"],
+      // "@/store/*": ["store/*"],
+      // "@/router/*": ["router/*"],
+      "@/assets/*": ["assets/*"]
+    }
   },
 
   "include": ["src"],
