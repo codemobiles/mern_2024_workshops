@@ -14,22 +14,15 @@ export const authRoutes = [
     controller: UserController,
     action: "login",
   },
-  {
-    method: "get",
-    route: "/products",
-    controller: ProductController,
-    action: "all",
-  },
 ];
 
 export const productRoutes = [
   {
     method: "get",
-    route: "/products",
+    route: "/product",
     controller: ProductController,
     action: "all",
   },
 ];
-
 
 export const Routes = [...authRoutes, ...productRoutes];
