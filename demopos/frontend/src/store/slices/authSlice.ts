@@ -33,6 +33,29 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    // Success
+    builder.addCase(login.fulfilled, (state, action) => {
+      state.isAuthented = true;
+      state.isAuthenticating = false;
+      state.isError = false;
+      state.loginResult = action.payload;
+    });
+
+    // Faield
+    builder.addCase(login.rejected, (state) => {
+      state.isAuthented = false;
+      state.isAuthenticating = false;
+      state.isError = true;
+    });
+
+    // In progessing
+    builder.addCase(login.pending, (state) => {
+      state.isAuthenticating = true;
+      state.isError = false;
+      state.isAuthented = false;
+    });
+  },
 });
 
 export const authSelector = (state: RootState) => state.authReducer;
