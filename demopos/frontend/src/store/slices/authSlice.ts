@@ -24,7 +24,7 @@ export const login = createAsyncThunk("auth/login", async (user: User) => {
   throw Error();
 });
 
-export const register = createAsyncThunk("authe/register", async (user: User) => {
+export const register = createAsyncThunk("auth/register", async (user: User) => {
   const result = await httpClient.post<RegisterResult>(server.REGISTER_URL, user);
   if (result.data.result === "ok") {
     return result.data;
@@ -44,7 +44,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // Success
+    // Login Success
     builder.addCase(login.fulfilled, (state, action) => {
       state.isAuthented = true;
       state.isAuthenticating = false;
@@ -52,18 +52,37 @@ const authSlice = createSlice({
       state.loginResult = action.payload;
     });
 
-    // Faield
+    // Login Faield
     builder.addCase(login.rejected, (state) => {
       state.isAuthented = false;
       state.isAuthenticating = false;
       state.isError = true;
     });
 
-    // In progessing
+    // Login In progessing
     builder.addCase(login.pending, (state) => {
       state.isAuthenticating = true;
       state.isError = false;
       state.isAuthented = false;
+    });
+
+    // Register Success
+    builder.addCase(register.fulfilled, (state, action) => {
+      state.isError = false;
+      state.isAuthenticating = false;
+      state.registerResult = action.payload;
+    });
+
+    // Register Faield
+    builder.addCase(register.rejected, (state) => {
+      state.isError = true;
+      state.isAuthenticating = false;
+    });
+
+    // Register In progessing
+    builder.addCase(register.pending, (state) => {
+      state.isError = false;
+      state.isAuthenticating = true;
     });
   },
 });
