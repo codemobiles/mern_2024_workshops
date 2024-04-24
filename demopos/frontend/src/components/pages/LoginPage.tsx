@@ -2,7 +2,7 @@ import loginBg from "../../assets/images/bg4.jpg";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Icons from "@mui/icons-material/";
-import { Box, InputAdornment } from "@mui/material";
+import { Alert, Box, InputAdornment } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -103,6 +103,12 @@ const Login = () => {
             />
           )}
         ></Controller>
+
+        {authReducer.isError && (
+          <Alert variant="filled" severity="error">
+            Invalid username or password
+          </Alert>
+        )}
 
         <Button disabled={authReducer.isAuthenticating} sx={classes.submitBtn} type="submit" fullWidth variant="contained" color="primary">
           Login
