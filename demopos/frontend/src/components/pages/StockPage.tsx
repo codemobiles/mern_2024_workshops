@@ -1,5 +1,8 @@
 import * as React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { stockSelector, getProducts } from "@/store/slices/stockSlice";
+import { useAppDispatch } from "@/store/store";
+import { useSelector } from "react-redux";
 
 const columns: GridColDef[] = [
   { field: "product_id", headerName: "เลขที่", width: 70 },
@@ -8,14 +11,19 @@ const columns: GridColDef[] = [
   { field: "price", headerName: "ราคา", width: 330 },
 ];
 
-const rows = [{ product_id: 1, name: "Snow", stock: 10, price: 100 }];
-
 export default function StockPage() {
+  const dispatch = useAppDispatch();
+  const stockReducer = useSelector(stockSelector);
+
+  React.useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid
         getRowId={(row) => row.product_id}
-        rows={rows}
+        rows={stockReducer.stockAllResult}
         columns={columns}
         initialState={{
           pagination: {
