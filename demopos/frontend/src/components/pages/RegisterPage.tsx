@@ -2,7 +2,7 @@ import loginBg from "../../assets/images/bg4.jpg";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Icons from "@mui/icons-material/";
-import { Box, InputAdornment } from "@mui/material";
+import { Box, InputAdornment, Stack } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -114,6 +114,16 @@ const Register = () => {
         >
           Cancel
         </Button>
+
+        {/* Separator */}
+        <Box sx={{ height: 10 }} />
+
+        <Stack direction={"row"} justifyContent={"space-around"} alignItems={"center"}>
+          {/* minus button */}
+          <Button>DEL</Button>
+          <Typography>0</Typography>
+          <Button>ADD</Button>
+        </Stack>
       </form>
     );
   };
