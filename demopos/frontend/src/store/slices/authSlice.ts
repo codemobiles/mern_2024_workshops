@@ -38,9 +38,9 @@ const authSlice = createSlice({
       state.count = state.count + 1;
     });
 
-    // builder.addCase("delAsync", (state) => {
-    //   state.count = state.count - 1;
-    // });
+    builder.addCase(delAsync.fulfilled, (state, action) => {
+      state.count = state.count - action.payload;
+    });
   },
 });
 
