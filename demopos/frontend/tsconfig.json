@@ -25,7 +25,7 @@
       "@/*": ["./src/*"],
       "@/components/*": ["components/*"],
       "@/types/*": ["types/*"],
-      // "@/utils/*": ["utils/*"],
+      "@/utils/*": ["utils/*"],
       "@/store/*": ["store/*"],
       // "@/router/*": ["router/*"],
       "@/assets/*": ["assets/*"]

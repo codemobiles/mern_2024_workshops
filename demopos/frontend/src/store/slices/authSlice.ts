@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { LoginResult, RegisterResult } from "@/types/auth-result.type";
+import { User } from "@/types/user.type";
 
 export interface AuthState {
   loginResult?: LoginResult;
@@ -9,6 +10,10 @@ export interface AuthState {
   isAuthented: boolean;
   isError: boolean;
 }
+
+export const login = (user: User) => {
+  
+};
 
 const initialState: AuthState = {
   isAuthenticating: true,
