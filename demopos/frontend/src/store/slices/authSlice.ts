@@ -7,8 +7,12 @@ export interface AuthState {
 
 const initialState: AuthState = { count: 30 };
 
+// export const addAsync = createAsyncThunk("addAsync", async () => {
+//   // simulate doing somethings for 1 secs
+//   await new Promise((resolve) => setTimeout(resolve, 1000));
+// });
+
 export const addAsync = createAsyncThunk("addAsync", async () => {
-  // simulate doing somethings for 1 secs
   await new Promise((resolve) => setTimeout(resolve, 1000));
 });
 
