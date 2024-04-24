@@ -16,6 +16,12 @@ export const addAsync = createAsyncThunk("addAsync", async () => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 });
 
+
+export const delAsync = async ()=>{
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  return 2
+}
+
 const authSlice = createSlice({
   name: "auth",
   initialState,

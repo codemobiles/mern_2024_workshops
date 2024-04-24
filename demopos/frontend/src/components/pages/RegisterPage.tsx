@@ -130,7 +130,9 @@ const Register = () => {
           <Button onClick={() => dispatch(del())}>DEL</Button>
           <Typography>{authReducer.count}</Typography>
           <Button onClick={() => dispatch(add())}>ADD</Button>
-          <Button onClick={() => dispatch(addAsync())}>AADD</Button>
+          <Button variant="contained" onClick={() => dispatch(addAsync())}>
+            AADD
+          </Button>
         </Stack>
       </form>
     );
