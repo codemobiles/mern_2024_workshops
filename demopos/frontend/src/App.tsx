@@ -34,6 +34,7 @@ import TransactionPage from "./components/pages/TransactionPage";
 import { useSelector } from "react-redux";
 import { authSelector, relogin } from "./store/slices/authSlice";
 import { useAppDispatch } from "./store/store";
+import PublicRoutes from "router/public.routes";
 
 const drawerWidth = 240;
 
@@ -115,17 +116,24 @@ export default function App() {
             <DrawerHeader />
             <div>
               <Routes>
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                <Route path="/shop" element={<ShopPage />} />
-                <Route path="/stock" element={<StockPage />} />
-                <Route path="/report" element={<ReportPage />} />
-                <Route path="/stock/create" element={<StockCreatePage />} />
-                <Route path="/stock/edit/:id" element={<StockEditPage />} />
-                <Route path="/report" element={<ReportPage />} />
-                <Route path="/transaction" element={<TransactionPage />} />
-                <Route path="/" element={<Navigate to="/login" />} />
-                <Route path="*" element={<Navigate to="/login" />} />
+                {/* Public routes */}
+                <Route path="/" element={<PublicRoutes />}>
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/" element={<Navigate to="/login" />} />
+                  <Route path="*" element={<Navigate to="/login" />} />
+                </Route>
+
+                {/* Protected routes */}
+                <Routes>
+                  <Route path="/shop" element={<ShopPage />} />
+                  <Route path="/stock" element={<StockPage />} />
+                  <Route path="/report" element={<ReportPage />} />
+                  <Route path="/stock/create" element={<StockCreatePage />} />
+                  <Route path="/stock/edit/:id" element={<StockEditPage />} />
+                  <Route path="/report" element={<ReportPage />} />
+                  <Route path="/transaction" element={<TransactionPage />} />
+                </Routes>
               </Routes>
             </div>
           </Container>
