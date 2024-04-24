@@ -14,7 +14,7 @@ import * as Yup from "yup";
 import { User } from "@/types/user.type";
 import { useAppDispatch } from "@/store/store";
 import { useSelector } from "react-redux";
-import { authSelector } from "@/store/slices/authSlice";
+import { authSelector, login } from "@/store/slices/authSlice";
 
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
@@ -44,7 +44,12 @@ const Login = () => {
   });
 
   const onSubmit = async (values: User) => {
-    alert(JSON.stringify(values));
+    const result = await dispatch(login(values));
+    if (login.fulfilled.match(result)) {
+      alert("Login successfully");
+    } else {
+      alert("Login failed");
+    }
   };
 
   const showForm = () => {
