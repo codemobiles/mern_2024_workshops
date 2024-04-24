@@ -46,7 +46,7 @@ const Login = () => {
   const onSubmit = async (values: User) => {
     const result = await dispatch(login(values));
     if (login.fulfilled.match(result)) {
-      alert("Login successfully");
+      navigate("/stock");
     } else {
       alert("Login failed");
     }
