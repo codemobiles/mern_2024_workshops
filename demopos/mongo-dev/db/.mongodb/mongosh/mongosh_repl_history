@@ -1,3 +1,11 @@
+db.products.find()
+show collections
+use demopos
+show dbs
+cls
+clear
+ls
+ls -lrt
 cls
 db.products.find()
 cls

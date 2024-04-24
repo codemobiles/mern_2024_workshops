@@ -31,4 +31,5 @@ export const productRoutes = [
   },
 ];
 
+
 export const Routes = [...authRoutes, ...productRoutes];
