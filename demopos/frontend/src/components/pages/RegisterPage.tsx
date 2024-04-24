@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { User } from "../../types/user.type";
 import axios from "axios";
+import { useSelector } from "react-redux";
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
   username: Yup.string().min(4).required("Username must be more than 3 letters").trim(),
@@ -21,6 +22,7 @@ const formValidateSchema = Yup.object().shape({
 
 const Register = () => {
   const navigate = useNavigate();
+  const authReducer = useSelector((state: any) => state.authReducer);
 
   const classes: any = {
     root: { display: "flex", justifyContent: "center", alignItems: "center" },
@@ -121,7 +123,7 @@ const Register = () => {
         <Stack direction={"row"} justifyContent={"space-around"} alignItems={"center"}>
           {/* minus button */}
           <Button>DEL</Button>
-          <Typography>0</Typography>
+          <Typography>{authReducer.count}</Typography>
           <Button>ADD</Button>
         </Stack>
       </form>
