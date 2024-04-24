@@ -14,7 +14,7 @@ import * as Yup from "yup";
 import { User } from "../../types/user.type";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { add, addAsync, authSelector, del } from "@/store/slices/authSlice";
+import { add, addAsync, authSelector, del, delAsync } from "@/store/slices/authSlice";
 import { useAppDispatch } from "@/store/store";
 const formValidateSchema = Yup.object().shape({
   // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
@@ -127,6 +127,9 @@ const Register = () => {
 
         <Stack direction={"row"} justifyContent={"space-around"} alignItems={"center"}>
           {/* minus button */}
+          <Button variant="contained" onClick={() => dispatch(delAsync())}>
+            ADEL
+          </Button>
           <Button onClick={() => dispatch(del())}>DEL</Button>
           <Typography>{authReducer.count}</Typography>
           <Button onClick={() => dispatch(add())}>ADD</Button>
