@@ -19,6 +19,11 @@ const authSlice = createSlice({
       state.count = state.count - 1;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase("addAsync", (state) => {});
+
+    builder.addCase("delAsync", (state) => {});
+  },
 });
 
 export const { add, del } = authSlice.actions;
