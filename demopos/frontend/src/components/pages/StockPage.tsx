@@ -2,20 +2,19 @@ import * as React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "firstName", headerName: "First name", width: 130 },
+  { field: "product_id", headerName: "เลขที่", width: 70 },
+  { field: "name", headerName: "ชื่อ", width: 330 },
+  { field: "stock", headerName: "คงเหลือ", width: 330 },
+  { field: "price", headerName: "ราคา", width: 330 },
 ];
 
-const rows = [
-  { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-  { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-  { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-];
+const rows = [{ product_id: 1, name: "Snow", stock: 10, price: 100 }];
 
 export default function StockPage() {
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid
+        getRowId={(row) => row.product_id}
         rows={rows}
         columns={columns}
         initialState={{
