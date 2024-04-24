@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { LoginResult, RegisterResult } from "@/types/auth-result.type";
 import { User } from "@/types/user.type";
@@ -13,10 +13,15 @@ export interface AuthState {
   isError: boolean;
 }
 
-export const login = async (user: User) => {
+export const login = createAsyncThunk("auth/login", async (user: User) => {
   const result = await httpClient.post(server.LOGIN_URL, user);
-  return result.data;
-};
+  if (result.data.result === "ok") {
+    const { token } = result.data;
+    localStorage.setItem(server.TOKEN_KEY, token);
+    return result.data;
+  }
+  throw Error();
+});
 
 const initialState: AuthState = {
   isAuthenticating: true,
