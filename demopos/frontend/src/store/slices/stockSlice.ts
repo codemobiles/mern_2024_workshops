@@ -1,15 +1,17 @@
 import { Product } from "@/types/product.type";
-import { createSlice } from "@reduxjs/toolkit";
+import { httpClient } from "@/utils/HttpClient";
+import { server } from "@/utils/constants";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export interface StockState {
   stockAllResult: Product[];
   stockOneResult: Product | null;
 }
 
-export const getProducts = ()=>{
-    
-}
-
+export const getProducts = createAsyncThunk("stock/getProducts", async () => {
+  const result = await httpClient.get<Product[]>(server.PRODUCT_URL);
+  return result.data;
+});
 
 const initialState: StockState = {
   stockAllResult: [],
@@ -18,7 +20,7 @@ const initialState: StockState = {
 
 const stockSlice = createSlice({
   name: "stock",
-  initialState ,
+  initialState,
   reducers: {},
 });
 
