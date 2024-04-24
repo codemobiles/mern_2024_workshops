@@ -3,9 +3,16 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { stockSelector, getProducts } from "@/store/slices/stockSlice";
 import { useAppDispatch } from "@/store/store";
 import { useSelector } from "react-redux";
+import { imageUrl } from "@/utils/constants";
 
 const columns: GridColDef[] = [
   { field: "product_id", headerName: "เลขที่", width: 70 },
+  {
+    field: "image",
+    headerName: "รูป",
+    width: 100,
+    renderCell: ({ value }) => <img alt="" src={`${imageUrl}/images/${value}?dummy=${Math.random()}`} className="w-[70px] h-[70px] rounded-[5%]" />,
+  },
   { field: "name", headerName: "ชื่อ", width: 330 },
   { field: "stock", headerName: "คงเหลือ", width: 330 },
   { field: "price", headerName: "ราคา", width: 330 },
