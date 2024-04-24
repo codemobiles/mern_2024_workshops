@@ -34,7 +34,7 @@ export const register = createAsyncThunk("auth/register", async (user: User) => 
 });
 
 const initialState: AuthState = {
-  isAuthenticating: true,
+  isAuthenticating: false,
   isAuthented: false,
   isError: false,
 };
