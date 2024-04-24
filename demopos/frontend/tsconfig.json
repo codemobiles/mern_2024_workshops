@@ -27,7 +27,7 @@
       "@/types/*": ["types/*"],
       "@/utils/*": ["utils/*"],
       "@/store/*": ["store/*"],
-      // "@/router/*": ["router/*"],
+      "@/router/*": ["router/*"],
       "@/assets/*": ["assets/*"]
     }
   },

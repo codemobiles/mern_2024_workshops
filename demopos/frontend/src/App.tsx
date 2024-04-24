@@ -1,29 +1,13 @@
 import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import { Navigate, Route, Routes } from "react-router-dom";
 import LoginPage from "./components/pages/LoginPage";
 import RegisterPage from "./components/pages/RegisterPage";
 import Header from "./components/layouts/Header";
 import Menu from "./components/layouts/Menu";
-import Counter from "./components/fragments/Counter";
 import { Container } from "@mui/material";
 import ReportPage from "./components/pages/ReportPage";
 import ShopPage from "./components/pages/ShopPage";
@@ -34,7 +18,8 @@ import TransactionPage from "./components/pages/TransactionPage";
 import { useSelector } from "react-redux";
 import { authSelector, relogin } from "./store/slices/authSlice";
 import { useAppDispatch } from "./store/store";
-import PublicRoutes from "router/public.routes";
+import PublicRoutes from "@/router/public.routes";
+import ProtectedRoutes from "@/router/protected.routes";
 
 const drawerWidth = 240;
 
@@ -117,7 +102,7 @@ export default function App() {
             <div>
               <Routes>
                 {/* Public routes */}
-                <Route path="/" element={<PublicRoutes />}>
+                <Route path="/" element={<PublicRoutes isAuthented={authReducer.isAuthented} />}>
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
                   <Route path="/" element={<Navigate to="/login" />} />
@@ -125,7 +110,7 @@ export default function App() {
                 </Route>
 
                 {/* Protected routes */}
-                <Routes>
+                <Route path="/" element={<ProtectedRoutes isAuthented={authReducer.isAuthented} />}>
                   <Route path="/shop" element={<ShopPage />} />
                   <Route path="/stock" element={<StockPage />} />
                   <Route path="/report" element={<ReportPage />} />
@@ -133,7 +118,7 @@ export default function App() {
                   <Route path="/stock/edit/:id" element={<StockEditPage />} />
                   <Route path="/report" element={<ReportPage />} />
                   <Route path="/transaction" element={<TransactionPage />} />
-                </Routes>
+                </Route>
               </Routes>
             </div>
           </Container>
