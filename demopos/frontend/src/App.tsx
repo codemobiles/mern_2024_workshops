@@ -32,7 +32,7 @@ import StockEditPage from "./components/pages/StockEditPage";
 import StockPage from "./components/pages/StockPage";
 import TransactionPage from "./components/pages/TransactionPage";
 import { useSelector } from "react-redux";
-import { authSelector } from "./store/slices/authSlice";
+import { authSelector, relogin } from "./store/slices/authSlice";
 import { useAppDispatch } from "./store/store";
 
 const drawerWidth = 240;
@@ -90,12 +90,11 @@ export default function App() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const authReducer = useSelector(authSelector);
-  const dispatch = useAppDispatch()
-  React.useEffect(()=>{
+  const dispatch = useAppDispatch();
+  React.useEffect(() => {
     // Called during component is being created
-    dispatch(re)
-  },[])
-
+    dispatch(relogin());
+  }, [dispatch]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -110,26 +109,28 @@ export default function App() {
       <CssBaseline />
       {authReducer.isAuthented && <Header open={open} handleDrawerOpen={handleDrawerOpen} />}
       {authReducer.isAuthented && <Menu open={open} handleDrawerClose={handleDrawerClose} />}
-      <Main open={open}>
-        <Container>
-          <DrawerHeader />
-          <div>
-            <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/shop" element={<ShopPage />} />
-              <Route path="/stock" element={<StockPage />} />
-              <Route path="/report" element={<ReportPage />} />
-              <Route path="/stock/create" element={<StockCreatePage />} />
-              <Route path="/stock/edit/:id" element={<StockEditPage />} />
-              <Route path="/report" element={<ReportPage />} />
-              <Route path="/transaction" element={<TransactionPage />} />
-              <Route path="/" element={<Navigate to="/login" />} />
-              <Route path="*" element={<Navigate to="/login" />} />
-            </Routes>
-          </div>
-        </Container>
-      </Main>
+      {!authReducer.isAuthenticating && (
+        <Main open={open}>
+          <Container>
+            <DrawerHeader />
+            <div>
+              <Routes>
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/shop" element={<ShopPage />} />
+                <Route path="/stock" element={<StockPage />} />
+                <Route path="/report" element={<ReportPage />} />
+                <Route path="/stock/create" element={<StockCreatePage />} />
+                <Route path="/stock/edit/:id" element={<StockEditPage />} />
+                <Route path="/report" element={<ReportPage />} />
+                <Route path="/transaction" element={<TransactionPage />} />
+                <Route path="/" element={<Navigate to="/login" />} />
+                <Route path="*" element={<Navigate to="/login" />} />
+              </Routes>
+            </div>
+          </Container>
+        </Main>
+      )}
     </Box>
   );
 }
