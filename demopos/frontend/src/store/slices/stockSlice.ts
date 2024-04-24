@@ -6,6 +6,11 @@ export interface StockState {
   stockOneResult: Product | null;
 }
 
+export const getProducts = ()=>{
+    
+}
+
+
 const initialState: StockState = {
   stockAllResult: [],
   stockOneResult: null,
