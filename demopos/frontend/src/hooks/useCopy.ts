@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import copy from "copy-to-clipboard";
 
 export const useCopy = (resetInterval: number): [isCopied: boolean, handleCopy: (text: string) => void] => {
@@ -8,6 +8,13 @@ export const useCopy = (resetInterval: number): [isCopied: boolean, handleCopy: 
     copy(text);
     setIsCopied(true);
   };
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    if (isCopied && resetInterval) {
+      timeout = setTimeout(() => setIsCopied(false), resetInterval);
+    }
+  }, []);
 
   return [isCopied, handleCopy];
 };
