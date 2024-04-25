@@ -110,7 +110,7 @@ const Login = () => {
           </Alert>
         )}
 
-        <Button style={{ marginBottom: 10 }} disabled={authReducer.isAuthenticating} sx={classes.submitBtn} type="submit" fullWidth variant="contained" color="primary">
+        <Button disabled={authReducer.isAuthenticating} sx={classes.submitBtn} type="submit" fullWidth variant="contained" color="primary">
           Login
         </Button>
 
@@ -118,6 +118,7 @@ const Login = () => {
         <Box sx={{ height: 10 }} />
 
         <Button
+          sx={{ mt: 20 }}
           onClick={() => {
             navigate("/register");
           }}

@@ -8,7 +8,7 @@ import LoginPage from "./components/pages/LoginPage";
 import RegisterPage from "./components/pages/RegisterPage";
 import Header from "./components/layouts/Header";
 import Menu from "./components/layouts/Menu";
-import { Container } from "@mui/material";
+import { Container, createTheme } from "@mui/material";
 import ReportPage from "./components/pages/ReportPage";
 import ShopPage from "./components/pages/ShopPage";
 import StockCreatePage from "./components/pages/StockCreatePage";
@@ -20,6 +20,7 @@ import { authSelector, relogin } from "./store/slices/authSlice";
 import { useAppDispatch } from "./store/store";
 import PublicRoutes from "@/router/public.routes";
 import ProtectedRoutes from "@/router/protected.routes";
+import { ThemeProvider } from "@emotion/react";
 
 const drawerWidth = 240;
 
@@ -73,7 +74,10 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function App() {
-  const theme = useTheme();
+  const theme = createTheme({
+    spacing: 8,
+  });
+
   const [open, setOpen] = React.useState(true);
   const authReducer = useSelector(authSelector);
   const dispatch = useAppDispatch();
@@ -91,39 +95,41 @@ export default function App() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      {authReducer.isAuthented && <Header open={open} handleDrawerOpen={handleDrawerOpen} />}
-      {authReducer.isAuthented && <Menu open={open} handleDrawerClose={handleDrawerClose} />}
-      {!authReducer.isAuthenticating && (
-        <Main open={open}>
-          <Container>
-            <DrawerHeader />
-            <div>
-              <Routes>
-                {/* Public routes */}
-                <Route path="/" element={<PublicRoutes isAuthented={authReducer.isAuthented} />}>
-                  <Route path="/login" element={<LoginPage />} />
-                  <Route path="/register" element={<RegisterPage />} />
-                  <Route path="/" element={<Navigate to="/login" />} />
-                  <Route path="*" element={<Navigate to="/login" />} />
-                </Route>
+    <ThemeProvider theme={theme}>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        {authReducer.isAuthented && <Header open={open} handleDrawerOpen={handleDrawerOpen} />}
+        {authReducer.isAuthented && <Menu open={open} handleDrawerClose={handleDrawerClose} />}
+        {!authReducer.isAuthenticating && (
+          <Main open={open}>
+            <Container>
+              <DrawerHeader />
+              <div>
+                <Routes>
+                  {/* Public routes */}
+                  <Route path="/" element={<PublicRoutes isAuthented={authReducer.isAuthented} />}>
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/" element={<Navigate to="/login" />} />
+                    <Route path="*" element={<Navigate to="/login" />} />
+                  </Route>
 
-                {/* Protected routes */}
-                <Route path="/" element={<ProtectedRoutes isAuthented={authReducer.isAuthented} />}>
-                  <Route path="/shop" element={<ShopPage />} />
-                  <Route path="/stock" element={<StockPage />} />
-                  <Route path="/report" element={<ReportPage />} />
-                  <Route path="/stock/create" element={<StockCreatePage />} />
-                  <Route path="/stock/edit/:id" element={<StockEditPage />} />
-                  <Route path="/report" element={<ReportPage />} />
-                  <Route path="/transaction" element={<TransactionPage />} />
-                </Route>
-              </Routes>
-            </div>
-          </Container>
-        </Main>
-      )}
-    </Box>
+                  {/* Protected routes */}
+                  <Route path="/" element={<ProtectedRoutes isAuthented={authReducer.isAuthented} />}>
+                    <Route path="/shop" element={<ShopPage />} />
+                    <Route path="/stock" element={<StockPage />} />
+                    <Route path="/report" element={<ReportPage />} />
+                    <Route path="/stock/create" element={<StockCreatePage />} />
+                    <Route path="/stock/edit/:id" element={<StockEditPage />} />
+                    <Route path="/report" element={<ReportPage />} />
+                    <Route path="/transaction" element={<TransactionPage />} />
+                  </Route>
+                </Routes>
+              </div>
+            </Container>
+          </Main>
+        )}
+      </Box>
+    </ThemeProvider>
   );
 }
