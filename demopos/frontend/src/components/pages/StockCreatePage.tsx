@@ -58,7 +58,6 @@ const StockCreate = () => {
             <Typography gutterBottom variant="h3">
               Create Product
             </Typography>
-
             <Controller
               name="name"
               control={control}
@@ -77,7 +76,6 @@ const StockCreate = () => {
                 );
               }}
             ></Controller>
-
             <Controller
               name="price"
               control={control}
@@ -97,7 +95,6 @@ const StockCreate = () => {
                 );
               }}
             />
-
             <Controller
               name="stock"
               control={control}
@@ -119,7 +116,6 @@ const StockCreate = () => {
             />
 
             <Box>{showPreviewImage()}</Box>
-
             <TextField
               className="mt-4"
               type="file"
