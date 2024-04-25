@@ -21,6 +21,7 @@ import { useAppDispatch } from "./store/store";
 import PublicRoutes from "@/router/public.routes";
 import ProtectedRoutes from "@/router/protected.routes";
 import { ThemeProvider } from "@emotion/react";
+import backgroundMenuImage from "@/assets/images/background_menu.jpg";
 
 const drawerWidth = 240;
 
@@ -76,6 +77,17 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export default function App() {
   const theme = createTheme({
     components: {
+      MuiDrawer: {
+        styleOverrides: {
+          paper: {
+            backgroundImage: `url(${backgroundMenuImage})`,
+            backgroundRepeat: "no-repeat",
+            backgroundColor: "#f2fcff",
+            backgroundPosition: "bottom",
+            width: drawerWidth,
+          },
+        },
+      },
       MuiButton: {
         styleOverrides: {
           root: {
