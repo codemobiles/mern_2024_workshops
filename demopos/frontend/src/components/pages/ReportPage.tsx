@@ -10,7 +10,7 @@ export default function ReportPage() {
   const [chartType, setChartType] = useState<ChartType>("line");
   const [chartData1, setChartData1] = useState([]);
   const [chartData2, setChartData2] = useState([]);
-
+  const labels = ["January", "February", "March", "April", "May", "June", "July"];
   function getRandomInt(): any {
     const randoms = [];
     for (let index = 0; index < 8; index++) {
@@ -20,7 +20,7 @@ export default function ReportPage() {
   }
 
   const data: ChartData = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    labels,
     datasets: [
       {
         label: "Revenue 2022",
@@ -99,6 +99,14 @@ export default function ReportPage() {
     },
     maintainAspectRatio: false,
     scales: {
+      x: {
+        ticks: {
+          callback: function (value: any, _index: any, _values: any) {
+            return "เดือน " + labels[_index].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          },
+        },
+      },
+
       y: {
         ticks: {
           callback: function (value: any, _index: any, _values: any) {
