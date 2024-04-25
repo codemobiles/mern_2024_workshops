@@ -1,3 +1,5 @@
+db.counters.find()
+show collections
 db.products.find()
 show collections
 use demopos
