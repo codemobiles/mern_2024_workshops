@@ -294,7 +294,8 @@ const Stock = () => {
       </Grid>
 
       <DataGrid
-        slots={{ toolbar: QuickSearchToolbar }}
+        // slots={{ toolbar: QuickSearchToolbar }}
+        components={{ Toolbar: QuickSearchToolbar }}
         sx={{
           backgroundColor: "white",
           height: "70vh",
