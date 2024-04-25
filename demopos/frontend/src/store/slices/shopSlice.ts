@@ -1,8 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+type StateProps = {
+  mOrderLines: any;
+};
+
+const initialState: StateProps = {
+  mOrderLines: [],
+};
+
 const shopSlice = createSlice({
   name: "shop",
-  initialState: {},
+  initialState,
   reducers: {
     addOrder: () => {},
     removeOrder: () => {},
