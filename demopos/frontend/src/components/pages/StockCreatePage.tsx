@@ -1,7 +1,12 @@
-import React from "react";
+import { Card } from "@mui/material";
 
-type Props = {};
+export default function StockCreatePage() {
+  return (
+    <div>
+      <Card elevation={10} style={{ padding: 20 }}>
 
-export default function StockCreatePage({}: Props) {
-  return <div>StockCreatePage</div>;
+        
+      </Card>
+    </div>
+  );
 }
