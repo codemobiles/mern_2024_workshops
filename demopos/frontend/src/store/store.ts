@@ -3,10 +3,11 @@ import { useDispatch } from "react-redux";
 import counterReducer from "@/store/slices/counterSlice";
 import authReducer from "@/store/slices/authSlice";
 import stockReducer from "@/store/slices/stockSlice";
+import shopReducer from "@/store/slices/shopSlice";
 
 // let store: any = undefined;
 const store = configureStore({
-  reducer: { counterReducer, authReducer, stockReducer },
+  reducer: { counterReducer, authReducer, stockReducer, shopReducer },
   devTools: import.meta.env.VITE_IS_PRODUCTION === "0", // show redux log in dev mode
 });
 
