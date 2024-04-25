@@ -26,8 +26,9 @@ import dayjs from "dayjs";
 import { NumericFormat } from "react-number-format";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import useCopyToClipboard from "../../hooks/useCopyToClipboard";
+import useCopyToClipboard from "@/hooks/useCopyToClipboard";
 import StockCard from "@/components/fragments/StockCard";
+import { useCopy } from "@/hooks/useCopy";
 
 interface QuickSearchToolbarProps {
   clearSearch: () => void;
@@ -79,7 +80,9 @@ function QuickSearchToolbar(props: QuickSearchToolbarProps) {
 }
 
 const Stock = () => {
-  const [isCopied, handleCopy] = useCopyToClipboard(500);
+  // const [isCopied, handleCopy] = useCopyToClipboard(500);
+
+  const [isCopied, handleCopy] = useCopy(0);
   const stockReducer = useSelector(stockSelector);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
