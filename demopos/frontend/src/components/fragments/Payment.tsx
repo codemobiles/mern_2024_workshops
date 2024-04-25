@@ -1,14 +1,19 @@
 import React from "react";
 
 type Props = {
-  order: any;
+  order: any[];
 };
 
 export default function Payment({ order }: Props) {
   return (
     <div>
       Payment
-      {JSON.stringify(order)}
+      <br />
+      <ul>
+        {order.map((e) => (
+          <li key={e.product_id}>{e.name}</li>
+        ))}
+      </ul>
     </div>
   );
 }
