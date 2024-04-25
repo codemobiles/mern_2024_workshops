@@ -9,6 +9,7 @@ export interface StockState {
   stockOneResult: Product | null;
 }
 
+export const addProduct = createAsyncThunk("stock/addProduct", (form: any) => {});
 export const deleteProduct = createAsyncThunk("stock/deleteProduct", (id: string) => {});
 
 export const getProducts = createAsyncThunk("stock/getProducts", async (keyword: string) => {
