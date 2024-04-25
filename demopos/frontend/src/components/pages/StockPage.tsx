@@ -82,7 +82,7 @@ function QuickSearchToolbar(props: QuickSearchToolbarProps) {
 const Stock = () => {
   // const [isCopied, handleCopy] = useCopyToClipboard(500);
 
-  const [isCopied, handleCopy] = useCopy(0);
+  const [isCopied, handleCopy] = useCopy(1000);
   const stockReducer = useSelector(stockSelector);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
