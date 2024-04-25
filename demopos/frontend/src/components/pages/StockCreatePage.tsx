@@ -1,52 +1,156 @@
+import { Box, Button, TextField } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+
+import { Link, useNavigate } from "react-router-dom";
+import { addProduct } from "@/store/slices/stockSlice";
+import { useAppDispatch } from "@/store/store";
 import { Product } from "@/types/product.type";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { Box, Button, Card, Stack, TextField, Typography } from "@mui/material";
-import { Controller, useForm } from "react-hook-form";
+
+import { useForm, Controller } from "react-hook-form";
 import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const formValidateSchema = Yup.object().shape({
-  // username: Yup.string().email("Invalid email address").required("Email is required").trim(),
-  name: Yup.string().required("Product name is required").trim(),
-  stock: Yup.number().min(1).required("Minimum stock is 1"),
-  price: Yup.number().min(1).required("Minimum price is 1"),
+  name: Yup.string().required("Name is required").trim(),
+  price: Yup.number().min(100, "Number must be greater than 100"),
+  stock: Yup.number().min(100, "Number must be greater than 100"),
 });
 
-export default function StockCreatePage() {
+const StockCreate = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const onSubmit = async (values: Product) => {
+    const formData = new FormData();
+    formData.append("name", values.name);
+    formData.append("price", String(values.price));
+    formData.append("stock", String(values.stock));
+    formData.append("image", values.file);
+    const result = await dispatch(addProduct(formData));
+    if (addProduct.fulfilled.match(result)) {
+      navigate("/stock");
+    }
+  };
+
+  const initialValue: Product = { name: "", price: 1500, stock: 9999 };
   const {
     control,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors },
-  } = useForm({
-    defaultValues: { name: "Your Product", stock: 0, price: 0 },
+  } = useForm<Product>({
+    defaultValues: initialValue,
+    //@ts-ignore
     resolver: yupResolver(formValidateSchema),
   });
 
-  return (
-    <div>
-      <Card elevation={10} sx={{ p: 20 }}>
-        <Typography variant="h3">Product Creation</Typography>
-        <form onSubmit={handleSubmit((result) => alert(JSON.stringify(result)))}>
-          {/* Name */}
-          <Controller
-            control={control}
-            name="name"
-            render={({ field }) => <TextField error={Boolean(errors.name)} helperText={errors.name?.message} {...field} placeholder="Name" fullWidth sx={{ py: 1 }} />}
-          />
+  const watchPreviewImage = watch("file_obj");
 
-          {/* Stock */}
-          <Controller control={control} name="stock" render={({ field }) => <TextField {...field} placeholder="Stock" fullWidth sx={{ py: 1 }} />} />
+  const showForm = () => {
+    return (
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <Card>
+          <CardContent className="p-8">
+            <Typography gutterBottom variant="h3">
+              Create Product
+            </Typography>
 
-          {/* Price */}
-          <Controller control={control} name="price" render={({ field }) => <TextField {...field} placeholder="Price" fullWidth sx={{ py: 1 }} />} />
-          <Stack direction={"row"} sx={{ pt: 8 }}>
-            <Box className="grow" />
-            <Button>Cancel</Button>
-            <Button type="submit" variant="contained">
+            <Controller
+              name="name"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <TextField
+                    {...field}
+                    label="Name"
+                    error={Boolean(errors.name?.message)}
+                    helperText={errors.name?.message?.toString()}
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    autoFocus
+                  />
+                );
+              }}
+            ></Controller>
+
+            <Controller
+              name="price"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <TextField
+                    {...field}
+                    label="Price"
+                    type="number"
+                    error={Boolean(errors.price?.message)}
+                    helperText={errors.price?.message?.toString()}
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    autoFocus
+                  />
+                );
+              }}
+            />
+
+            <Controller
+              name="stock"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <TextField
+                    {...field}
+                    type="number"
+                    label="Stock"
+                    error={Boolean(errors.stock?.message)}
+                    helperText={errors.stock?.message?.toString()}
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    autoFocus
+                  />
+                );
+              }}
+            />
+
+            <Box>{showPreviewImage()}</Box>
+
+            <TextField
+              className="mt-4"
+              type="file"
+              fullWidth
+              onChange={(e: React.ChangeEvent<any>) => {
+                e.preventDefault();
+                setValue("file", e.target.files[0]); // for upload
+                setValue("file_obj", URL.createObjectURL(e.target.files[0])); // for preview image
+              }}
+            />
+          </CardContent>
+          <CardActions>
+            <Button fullWidth variant="contained" color="primary" type="submit" className="mr-2">
               Create
             </Button>
-          </Stack>
-        </form>
-      </Card>
-    </div>
-  );
-}
+            <Button fullWidth component={Link} to="/stock" color="info" variant="outlined">
+              Cancel
+            </Button>
+          </CardActions>
+        </Card>
+      </form>
+    );
+  };
+
+  const showPreviewImage = () => {
+    if (watchPreviewImage) {
+      return <img alt="" src={watchPreviewImage} className="h-[100px]" />;
+    }
+  };
+
+  return <Box>{showForm()}</Box>;
+};
+
+export default StockCreate;
