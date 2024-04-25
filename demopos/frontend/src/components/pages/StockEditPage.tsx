@@ -24,7 +24,7 @@ const formValidateSchema = Yup.object().shape({
 const StockEditPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const stockReducer = useSelector(stockSelector)
+  const stockReducer = useSelector(stockSelector);
 
   const match = useMatch("/stock/edit/:id");
 
@@ -51,7 +51,6 @@ const StockEditPage = () => {
     }
   };
 
-  const initialValue: Product = { name: "", price: 1500, stock: 9999 };
   const {
     control,
     handleSubmit,
@@ -59,7 +58,7 @@ const StockEditPage = () => {
     watch,
     formState: { errors },
   } = useForm<Product>({
-    defaultValues: initialValue,
+    defaultValues: stockReducer.stockOneResult,
     //@ts-ignore
     resolver: yupResolver(formValidateSchema),
   });
