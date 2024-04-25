@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 type StateProps = {
   mOrderLines: any;
@@ -19,5 +20,6 @@ const shopSlice = createSlice({
   },
 });
 
-export const { addOrder, removeOrder, shopSelector, togglePayment } = shopSlice.actions;
+export const shopSelector = (state: RootState) => state.shopReducer;
+export const { addOrder, removeOrder, togglePayment } = shopSlice.actions;
 export default shopSlice.reducer;
