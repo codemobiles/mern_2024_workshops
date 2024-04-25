@@ -51,17 +51,23 @@ const StockEditPage = () => {
     }
   };
 
+  const initialValue: Product = { name: "", price: 0, stock: 0 };
   const {
     control,
     handleSubmit,
     setValue,
     watch,
+    reset,
     formState: { errors },
   } = useForm<Product>({
-    defaultValues: stockReducer.stockOneResult,
+    defaultValues: initialValue,
     //@ts-ignore
     resolver: yupResolver(formValidateSchema),
   });
+
+  useEffect(() => {
+    reset(stockReducer.stockOneResult ?? initialValue);
+  }, [stockReducer.stockOneResult]);
 
   const watchPreviewImage = watch("file_obj");
 
