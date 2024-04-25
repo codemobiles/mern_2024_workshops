@@ -11,7 +11,7 @@ export interface StockState {
 
 export const deleteProduct = createAsyncThunk("stock/deleteProduct", (id: string) => {});
 
-export const getProducts = createAsyncThunk("stock/getProducts", async () => {
+export const getProducts = createAsyncThunk("stock/getProducts", async (keyword: string) => {
   const result = await httpClient.get<Product[]>(server.PRODUCT_URL);
   return result.data;
 });
