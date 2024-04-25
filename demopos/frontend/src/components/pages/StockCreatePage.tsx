@@ -27,7 +27,11 @@ export default function StockCreatePage() {
         <Typography variant="h3">Product Creation</Typography>
         <form onSubmit={handleSubmit((result) => alert(JSON.stringify(result)))}>
           {/* Name */}
-          <Controller control={control} name="name" render={({ field }) => <TextField {...field} placeholder="Name" fullWidth sx={{ py: 1 }} />} />
+          <Controller
+            control={control}
+            name="name"
+            render={({ field }) => <TextField error={Boolean(errors.name)} helperText={errors.name?.message} {...field} placeholder="Name" fullWidth sx={{ py: 1 }} />}
+          />
 
           {/* Stock */}
           <Controller control={control} name="stock" render={({ field }) => <TextField {...field} placeholder="Stock" fullWidth sx={{ py: 1 }} />} />
