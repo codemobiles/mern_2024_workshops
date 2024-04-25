@@ -97,6 +97,14 @@ export default function App() {
       },
     },
     spacing: 8,
+    typography: {
+      fontFamily: "Chakra Petch",
+      // fontFamily: "Roboto",
+      fontWeightLight: 100,
+      fontWeightRegular: 400,
+      fontWeightMedium: 500,
+      fontWeightBold: 600,
+    },
   });
 
   const [open, setOpen] = React.useState(true);
