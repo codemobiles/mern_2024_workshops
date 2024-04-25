@@ -3,6 +3,14 @@
 - for vite only (cannot use create react app version)
 - https://tailwindcss.com/docs/guides/vite
 
+# Update tailwind.conf
+
+```
+corePlugins: {
+    preflight: false,
+  },
+```
+
 - copy and paste InjectTailwind.tsx in src
 - In main.tsx,  
   import InjectTailwind from './InjectTailwind'
