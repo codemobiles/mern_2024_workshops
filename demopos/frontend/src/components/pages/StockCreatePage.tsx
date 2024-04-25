@@ -1,6 +1,11 @@
+import { Product } from "@/types/product.type";
 import { Box, Button, Card, Stack, TextField, Typography } from "@mui/material";
+import { useForm } from "react-hook-form";
 
 export default function StockCreatePage() {
+  const { control, handleSubmit } = useForm<Product>({
+    defaultValues: { name: "", stock: 0, price: 0 },
+  });
   return (
     <div>
       <Card elevation={10} sx={{ p: 20 }}>
