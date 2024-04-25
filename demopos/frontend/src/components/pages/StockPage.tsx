@@ -85,6 +85,8 @@ const Stock = () => {
   const navigate = useNavigate();
 
   const [openDialog, setOpenDialog] = useState<boolean>(false);
+  const [openMyDialog, setOpenMyDialog] = useState(false);
+
   const [selectedProduct, setSelectedProduct] = useState<Product>();
   const [value, setValue] = useDebounce("", 300);
 
@@ -206,7 +208,7 @@ const Stock = () => {
 
     const showMyDialog = () => {
       return (
-        <Dialog open={open} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
+        <Dialog open={openMyDialog} onClose={handleClose} aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
           <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
@@ -250,7 +252,13 @@ const Stock = () => {
       {/* Summary Icons */}
       <Grid container className="mb-6" spacing={7}>
         <Grid item xs={12} lg={3} md={6}>
-          <StockCard icon={AddShoppingCart} title="TOTAL" subtitle="112 THB" color="#00a65a" />
+          <Button
+            onClick={() => {
+              setOpenMyDialog(true);
+            }}
+          >
+            <StockCard icon={AddShoppingCart} title="TOTAL" subtitle="112 THB" color="#00a65a" />
+          </Button>
         </Grid>
 
         <Grid item xs={12} lg={3} md={6}>
