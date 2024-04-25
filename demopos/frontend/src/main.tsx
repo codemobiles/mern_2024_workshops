@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <InjectTailwind>
           <App />
         </InjectTailwind>
-      </BrowserRouter>
+      </BrowserRouter> 
     </Provider>
   </React.StrictMode>
 );
