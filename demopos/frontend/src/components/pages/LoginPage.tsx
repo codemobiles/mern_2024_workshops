@@ -110,7 +110,7 @@ const Login = () => {
           </Alert>
         )}
 
-        <Button disabled={authReducer.isAuthenticating} sx={classes.submitBtn} type="submit" fullWidth variant="contained" color="primary">
+        <Button style={{ marginBottom: 10 }} disabled={authReducer.isAuthenticating} sx={classes.submitBtn} type="submit" fullWidth variant="contained" color="primary">
           Login
         </Button>
 

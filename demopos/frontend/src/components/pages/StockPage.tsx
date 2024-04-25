@@ -122,7 +122,7 @@ const Stock = () => {
       field: "stock",
       renderCell: ({ value }: GridRenderCellParams) => (
         <Typography variant="body1">
-          <NumericFormat value={value} displayType={"text"} thousandSeparator={true} decimalScale={2} fixedDecimalScale={true} />
+          <NumericFormat value={value} displayType={"text"} thousandSeparator={true} decimalScale={2} fixedDecimalScale={false} />
         </Typography>
       ),
     },
@@ -271,13 +271,7 @@ const Stock = () => {
       {/* Summary Icons */}
       <Grid container className="mb-6" spacing={7}>
         <Grid item xs={12} lg={3} md={6}>
-          <Button
-            onClick={() => {
-              setOpenMyDialog(true);
-            }}
-          >
-            <StockCard icon={AddShoppingCart} title="TOTAL" subtitle="112 THB" color="#00a65a" />
-          </Button>
+          <StockCard icon={AddShoppingCart} title="TOTAL" subtitle="112 THB" color="#00a65a" />
         </Grid>
 
         <Grid item xs={12} lg={3} md={6}>
