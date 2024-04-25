@@ -38,6 +38,6 @@ export const data = {
   ],
 };
 
-export function ReportPage() {
+export default function ReportPage() {
   return <Line options={options} data={data} />;
 }
