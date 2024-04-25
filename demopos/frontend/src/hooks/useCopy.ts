@@ -14,7 +14,12 @@ export const useCopy = (resetInterval: number): [isCopied: boolean, handleCopy: 
     if (isCopied && resetInterval) {
       timeout = setTimeout(() => setIsCopied(false), resetInterval);
     }
-  }, []);
+
+    // called when hook is destroyed
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [isCopied, resetInterval]);
 
   return [isCopied, handleCopy];
 };
