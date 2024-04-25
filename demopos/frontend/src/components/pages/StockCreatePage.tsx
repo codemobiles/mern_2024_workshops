@@ -1,19 +1,24 @@
 import { Product } from "@/types/product.type";
 import { Box, Button, Card, Stack, TextField, Typography } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 export default function StockCreatePage() {
   const { control, handleSubmit } = useForm<Product>({
-    defaultValues: { name: "", stock: 0, price: 0 },
+    defaultValues: { name: "Your Product", stock: 0, price: 0 },
   });
   return (
     <div>
       <Card elevation={10} sx={{ p: 20 }}>
         <Typography variant="h3">Product Creation</Typography>
         <form>
-          <TextField placeholder="Name" fullWidth sx={{ py: 1 }} />
-          <TextField placeholder="Price" fullWidth sx={{ py: 1 }} />
-          <TextField placeholder="Stock" fullWidth sx={{ py: 1 }} />
+          {/* Name */}
+          <Controller control={control} name="name" render={({ field }) => <TextField {...field} placeholder="Name" fullWidth sx={{ py: 1 }} />} />
+
+          {/* Stock */}
+          <Controller control={control} name="stock" render={({ field }) => <TextField {...field} placeholder="Stock" fullWidth sx={{ py: 1 }} />} />
+
+          {/* Price */}
+          <Controller control={control} name="price" render={({ field }) => <TextField {...field} placeholder="Price" fullWidth sx={{ py: 1 }} />} />
           <Stack direction={"row"} sx={{ pt: 8 }}>
             <Box className="grow" />
             <Button>Cancel</Button>
