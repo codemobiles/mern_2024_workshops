@@ -51,8 +51,14 @@ const stockSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    // Query
     builder.addCase(getProducts.fulfilled, (state, action) => {
       state.stockAllResult = action.payload;
+    });
+
+    // getProductById
+    builder.addCase(getProductById.fulfilled, (state, action) => {
+      state.stockOneResult = action.payload;
     });
   },
 });
