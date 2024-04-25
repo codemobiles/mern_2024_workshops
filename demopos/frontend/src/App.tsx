@@ -22,6 +22,7 @@ import PublicRoutes from "@/router/public.routes";
 import ProtectedRoutes from "@/router/protected.routes";
 import { ThemeProvider } from "@emotion/react";
 import backgroundMenuImage from "@/assets/images/background_menu.jpg";
+import { blue } from "@mui/material/colors";
 
 const drawerWidth = 240;
 
@@ -104,6 +105,12 @@ export default function App() {
       fontWeightRegular: 400,
       fontWeightMedium: 500,
       fontWeightBold: 600,
+    },
+    palette: {
+      primary: import.meta.env.VITE_IS_PRODUCTION === "1" ? { main: "#0096d3" } : blue,
+      background: {
+        default: "#B8F4FF33",
+      },
     },
   });
 
