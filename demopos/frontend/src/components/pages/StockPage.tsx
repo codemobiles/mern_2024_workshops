@@ -281,7 +281,7 @@ const Stock = () => {
         </Grid>
 
         <Grid item xs={12} lg={3} md={6}>
-          <StockCard icon={() => <NewReleases sx={{ color: "#f39c12" }} />} title="EMPTY" subtitle="9 PCS." color="#f39c12" />
+          <StockCard icon={NewReleases} title="EMPTY" subtitle="9 PCS." color="#f39c12" />
         </Grid>
 
         <Grid item xs={12} lg={3} md={6}>
