@@ -75,6 +75,15 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function App() {
   const theme = createTheme({
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: 20,
+          },
+        },
+      },
+    },
     spacing: 8,
   });
 
