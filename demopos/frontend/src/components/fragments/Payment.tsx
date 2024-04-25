@@ -1,7 +1,7 @@
 import React from "react";
 
 type Props = {
-  order: any[];
+  order: string;
 };
 
 export default function Payment({ order }: Props) {
@@ -10,7 +10,7 @@ export default function Payment({ order }: Props) {
       Payment
       <br />
       <ul>
-        {order.map((e) => (
+        {JSON.parse(order).map((e) => (
           <li key={e.product_id}>{e.name}</li>
         ))}
       </ul>
