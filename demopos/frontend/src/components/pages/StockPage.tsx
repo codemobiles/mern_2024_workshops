@@ -119,7 +119,7 @@ const Stock = () => {
       field: "stock",
       renderCell: ({ value }: GridRenderCellParams) => (
         <Typography variant="body1">
-          <NumericFormat value={value} displayType={"text"} thousandSeparator={true} decimalScale={0} fixedDecimalScale={true} />
+          <NumericFormat value={value} displayType={"text"} thousandSeparator={true} decimalScale={2} fixedDecimalScale={true} />
         </Typography>
       ),
     },
@@ -248,7 +248,7 @@ const Stock = () => {
       </Grid>
 
       <DataGrid
-        components={{ Toolbar: QuickSearchToolbar }}
+        slots={{ toolbar: QuickSearchToolbar }}
         sx={{
           backgroundColor: "white",
           height: "70vh",
