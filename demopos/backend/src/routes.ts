@@ -58,6 +58,18 @@ const productRoutes = [
 
 const transactionRoutes = [
   {
+    method: "get",
+    route: "/transaction",
+    controller: TransactionController,
+    action: "all",
+  },
+  {
+    method: "get",
+    route: "/transaction/between/:startDate/:endDate",
+    controller: TransactionController,
+    action: "between",
+  },
+  {
     method: "post",
     route: "/transaction",
     controller: TransactionController,
@@ -65,9 +77,9 @@ const transactionRoutes = [
   },
   {
     method: "get",
-    route: "/transaction",
+    route: "/transaction/id/:transaction_id",
     controller: TransactionController,
-    action: "all",
+    action: "one",
   },
 ];
 
