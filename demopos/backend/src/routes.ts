@@ -1,4 +1,5 @@
 import { ProductController } from "./controller/ProductController";
+import { TransactionController } from "./controller/TransactionController";
 import { UserController } from "./controller/UserController";
 
 export const authRoutes = [
@@ -55,6 +56,19 @@ const productRoutes = [
   },
 ];
 
-const transactionRoutes = [];
+const transactionRoutes = [
+  {
+    method: "post",
+    route: "/transaction",
+    controller: TransactionController,
+    action: "add",
+  },
+  {
+    method: "get",
+    route: "/transaction",
+    controller: TransactionController,
+    action: "all",
+  },
+];
 
 export const Routes = [...authRoutes, ...productRoutes, ...transactionRoutes];
