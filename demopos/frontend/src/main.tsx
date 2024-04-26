@@ -5,7 +5,7 @@ import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "@/store/store.ts";
-import InjectTailwind from "@/InjectTailwind";
+import InjectTailwind from "./InjectTailwind";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <InjectTailwind>
           <App />
         </InjectTailwind>
-      </BrowserRouter> 
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );

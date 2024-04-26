@@ -12,7 +12,6 @@ import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { User } from "../../types/user.type";
-import axios from "axios";
 import { useSelector } from "react-redux";
 
 import { useAppDispatch } from "@/store/store";

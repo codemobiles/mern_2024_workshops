@@ -101,7 +101,7 @@ export default function ReportPage() {
     scales: {
       x: {
         ticks: {
-          callback: function (value: any, _index: any, _values: any) {
+          callback: function (_value: any, _index: any, _values: any) {
             return "เดือน " + labels[_index].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
           },
         },
