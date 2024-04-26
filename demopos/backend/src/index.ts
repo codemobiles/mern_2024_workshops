@@ -29,8 +29,12 @@ AppDataSource.initialize()
         "/api/v2" + route.route,
         (req, res, next) => {
           console.log("Pass1");
-          // next();
-          res.end("No authorization1");
+          // http://localhost:8081/api/v2/product?token=1234
+          if (req.query.token == "1234") {
+            next();
+          } else {
+            res.end("No authorization1");
+          }
         },
         (req, res, next) => {
           console.log("Pass2");
