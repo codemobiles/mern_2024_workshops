@@ -1,6 +1,7 @@
 import axios from "axios";
 import join from "url-join";
 import { server, apiUrl } from "./constants";
+import { logout } from "@/store/slices/authSlice";
 // import { logout } from "@/store/slices/authSlice";
 
 const isAbsoluteURLRegex = /^(?:\w+:)\/\//;
@@ -25,7 +26,7 @@ axios.interceptors.response.use(
   async (error) => {
     console.log(JSON.stringify(error, undefined, 2));
     const store = () => import("@/store/store");
-    // (await store()).default.dispatch(logout());
+    (await store()).default.dispatch(logout());
   }
 );
 
