@@ -22,6 +22,7 @@ export class ProductController {
     // parse multi-parts request
     const form = formidable({ multiples: true });
     const [_fields, _files] = await form.parse(req);
+    console.log(`Fields: ${JSON.stringify(_fields)}`);
     const fields = firstValues(form, _fields);
     const files = firstValues(form, _files);
 

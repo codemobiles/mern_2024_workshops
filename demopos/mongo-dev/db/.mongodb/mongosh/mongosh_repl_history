@@ -1,3 +1,7 @@
+db.products.find().sort({ created: "DESC" })
+db.products.find().sort({ order: { created: "DESC" } })
+db.products.find({ order: { created: "DESC" } })
+db.products.find()
 db.counters.find()
 show collections
 db.products.find()
