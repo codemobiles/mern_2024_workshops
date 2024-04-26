@@ -8,7 +8,7 @@ import shopReducer from "@/store/slices/shopSlice";
 // let store: any = undefined;
 const store = configureStore({
   reducer: { counterReducer, authReducer, stockReducer, shopReducer },
-  devTools: import.meta.env.VITE_IS_PRODUCTION === "0", // show redux log in dev mode
+  devTools: true,
 });
 
 // export type of root state from reducers

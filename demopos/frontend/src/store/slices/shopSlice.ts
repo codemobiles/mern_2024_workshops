@@ -1,7 +1,7 @@
 import { Product } from "@/types/product.type";
 import { TransactionResponse } from "@/types/transaction.type";
 import { server } from "@/utils/constants";
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { httpClient } from "@/utils/HttpClient";
 
