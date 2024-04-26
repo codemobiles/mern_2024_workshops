@@ -52,7 +52,7 @@ services:
     image: frontend-react:1.0
     container_name: frontend-react
     ports:
-      - 80:80
+      - 85:80
     depends_on:
       - backend
     networks:
