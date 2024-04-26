@@ -1,27 +1,30 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
+
+import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
+import * as React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import LoginPage from "./components/pages/LoginPage";
-import RegisterPage from "./components/pages/RegisterPage";
-import Header from "./components/layouts/Header";
-import Menu from "./components/layouts/Menu";
-import { Container, createTheme } from "@mui/material";
-import ReportPage from "./components/pages/ReportPage";
-import ShopPage from "./components/pages/ShopPage";
-import StockCreatePage from "./components/pages/StockCreatePage";
-import StockEditPage from "./components/pages/StockEditPage";
-import StockPage from "./components/pages/StockPage";
-import TransactionPage from "./components/pages/TransactionPage";
-import { useSelector } from "react-redux";
-import { authSelector, relogin } from "./store/slices/authSlice";
-import { useAppDispatch } from "./store/store";
-import PublicRoutes from "@/router/public.routes";
-import ProtectedRoutes from "@/router/protected.routes";
-import { ThemeProvider } from "@emotion/react";
+
 import backgroundMenuImage from "@/assets/images/background_menu.jpg";
+
+import Header from "@/components/layouts/Header";
+import Menu from "@/components/layouts/Menu";
+import LoginPage from "@/components/pages/LoginPage";
+import RegisterPage from "@/components/pages/RegisterPage";
+import ReportPage from "@/components/pages/ReportPage";
+import ShopPage from "@/components/pages/ShopPage";
+import StockCreatePage from "@/components/pages/StockCreatePage";
+import StockEditPage from "@/components/pages/StockEditPage";
+import TransactionPage from "@/components/pages/TransactionPage";
+import ProtectedRoutes from "@/router/protected.routes";
+import PublicRoutes from "@/router/public.routes";
+import { authSelector, relogin } from "@/store/slices/authSlice";
+import { useAppDispatch } from "@/store/store";
 import { blue } from "@mui/material/colors";
+import { Container } from "@mui/system";
+import { useSelector } from "react-redux";
+import Box from "@mui/material/Box";
+
+const StockPage = React.lazy(() => import("@/components/pages/StockPage"));
 
 const drawerWidth = 240;
 
@@ -54,8 +57,19 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function App() {
+  const authReducer = useSelector(authSelector);
+  const dispatch = useAppDispatch();
+
+  // https://mui.com/customization/default-theme/
   const theme = createTheme({
     components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            borderRadius: 30,
+          },
+        },
+      },
       MuiDrawer: {
         styleOverrides: {
           paper: {
@@ -64,13 +78,6 @@ export default function App() {
             backgroundColor: "#f2fcff",
             backgroundPosition: "bottom",
             width: drawerWidth,
-          },
-        },
-      },
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            borderRadius: 20,
           },
         },
       },
@@ -93,12 +100,6 @@ export default function App() {
   });
 
   const [open, setOpen] = React.useState(true);
-  const authReducer = useSelector(authSelector);
-  const dispatch = useAppDispatch();
-  React.useEffect(() => {
-    // Called during component is being created
-    dispatch(relogin());
-  }, [dispatch]);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -108,41 +109,50 @@ export default function App() {
     setOpen(false);
   };
 
+  React.useEffect(() => {
+    // on created
+    dispatch(relogin());
+  }, [dispatch]);
+
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: "flex" }}>
+      <Box className="flex">
         <CssBaseline />
         {authReducer.isAuthented && <Header open={open} handleDrawerOpen={handleDrawerOpen} />}
         {authReducer.isAuthented && <Menu open={open} handleDrawerClose={handleDrawerClose} />}
-        {!authReducer.isAuthenticating && (
-          <Main open={open}>
-            <Container>
-              <DrawerHeader />
-              <div>
-                <Routes>
-                  {/* Public routes */}
-                  <Route path="/" element={<PublicRoutes isAuthented={authReducer.isAuthented} />}>
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/register" element={<RegisterPage />} />
-                    <Route path="/" element={<Navigate to="/login" />} />
-                    <Route path="*" element={<Navigate to="/login" />} />
-                  </Route>
 
-                  {/* Protected routes */}
-                  <Route path="/" element={<ProtectedRoutes isAuthented={authReducer.isAuthented} />}>
-                    <Route path="/shop" element={<ShopPage />} />
-                    <Route path="/stock" element={<StockPage />} />
-                    <Route path="/report" element={<ReportPage />} />
-                    <Route path="/stock/create" element={<StockCreatePage />} />
-                    <Route path="/stock/edit/:id" element={<StockEditPage />} />
-                    <Route path="/report" element={<ReportPage />} />
-                    <Route path="/transaction" element={<TransactionPage />} />
-                  </Route>
-                </Routes>
-              </div>
-            </Container>
-          </Main>
-        )}
+        {/* loading ->  */}
+        <React.Suspense fallback={<h1 className="text-[100px]">Loading....</h1>}>
+          <>
+            {!authReducer.isAuthenticating && (
+              <Main open={open}>
+                <Container>
+                  <DrawerHeader />
+                  <Routes>
+                    {/** Wrap all Route under PublicRoutes element */}
+                    <Route path="/" element={<PublicRoutes isAuthented={authReducer.isAuthented} />}>
+                      <Route path="/login" element={<LoginPage />} />
+                      <Route path="/register" element={<RegisterPage />} />
+                      <Route path="/" element={<Navigate to="/login" />} />
+                      <Route path="*" element={<Navigate to="/login" />} />
+                    </Route>
+                    {/* Protected routes */}
+                    <Route path="/" element={<ProtectedRoutes isAuthented={authReducer.isAuthented} />}>
+                      <Route path="/shop" element={<ShopPage />} />
+                      <Route path="/stock" element={<StockPage />} />
+                      <Route path="/report" element={<ReportPage />} />
+                      <Route path="/stock/create" element={<StockCreatePage />} />
+                      <Route path="/stock/edit/:id" element={<StockEditPage />} />
+                      <Route path="/report" element={<ReportPage />} />
+                      <Route path="/transaction" element={<TransactionPage />} />
+                      {/* <Route path="/chartjs" element={<ChartJSFaker />} /> */}
+                    </Route>
+                  </Routes>
+                </Container>
+              </Main>
+            )}
+          </>
+        </React.Suspense>
       </Box>
     </ThemeProvider>
   );
