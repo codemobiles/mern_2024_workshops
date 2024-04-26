@@ -15,7 +15,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
-    "@mui/x-data-grid": "^6.9.0",
+    "@mui/x-data-grid": "^7.3.0",
     "@react-hook/debounce": "^4.0.0",
     "@reduxjs/toolkit": "^2.2.3",
     "@types/faker": "5.5.3",
