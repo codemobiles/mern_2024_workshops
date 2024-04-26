@@ -55,4 +55,6 @@ const productRoutes = [
   },
 ];
 
-export const Routes = [...authRoutes, ...productRoutes];
+const transactionRoutes = [];
+
+export const Routes = [...authRoutes, ...productRoutes, ...transactionRoutes];
