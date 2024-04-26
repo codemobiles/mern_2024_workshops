@@ -13,6 +13,24 @@ if (!process.env.ROOT_PATH) {
   console.log("for win: set ROOT_PATH=%cd%");
   exit(0);
 }
+const interceptor1 = (req, res, next) => {
+  console.log("Pass1");
+  // http://localhost:8081/api/v2/product?token=1234
+  if (req.query.token == "1234") {
+    next();
+  } else {
+    res.end("No authorization1");
+  }
+};
+
+const interceptor2 = (req, res, next) => {
+  console.log("Pass2");
+  if (req.query.passsport == "555") {
+    next();
+  } else {
+    res.end("No authorization2");
+  }
+};
 
 AppDataSource.initialize()
   .then(async () => {
@@ -25,34 +43,17 @@ AppDataSource.initialize()
 
     // register express routes from defined application routes
     Routes.forEach((route) => {
-      (app as any)[route.method](
-        "/api/v2" + route.route,
-        (req, res, next) => {
-          console.log("Pass1");
-          // http://localhost:8081/api/v2/product?token=1234
-          if (req.query.token == "1234") {
-            next();
-          } else {
-            res.end("No authorization1");
-          }
-        },
-        (req, res, next) => {
-          console.log("Pass2");
-          if (req.query.passsport == "555") {
-            next();
-          } else {
-            res.end("No authorization2");
-          }
-        },
-        (req: Request, res: Response, next: Function) => {
-          const result = new (route.controller as any)()[route.action](req, res, next);
-          if (result instanceof Promise) {
-            result.then((result) => (result !== null && result !== undefined ? res.send(result) : undefined));
-          } else if (result !== null && result !== undefined) {
-            res.json(result);
-          }
+      (app as any)[route.method]("/api/v2" + route.route,
+       interceptor1, 
+       interceptor2, 
+       (req: Request, res: Response, next: Function) => {
+        const result = new (route.controller as any)()[route.action](req, res, next);
+        if (result instanceof Promise) {
+          result.then((result) => (result !== null && result !== undefined ? res.send(result) : undefined));
+        } else if (result !== null && result !== undefined) {
+          res.json(result);
         }
-      );
+      });
     });
 
     // setup express app here
