@@ -16,6 +16,6 @@ RUN npm run build
 # https://hub.docker.com/_/mongo
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
 FROM nginx:stable-alpine
-COPY src/nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 WORKDIR /usr/share/nginx/html
 COPY --from=builder /usr/src/app/dist/ .
