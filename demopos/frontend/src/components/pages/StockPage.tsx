@@ -29,13 +29,7 @@ import { Link, useNavigate } from "react-router-dom";
 import StockCard from "@/components/fragments/StockCard";
 import { useCopy } from "@/hooks/useCopy";
 
-interface QuickSearchToolbarProps {
-  clearSearch: () => void;
-  onChange: () => void;
-  value: string;
-}
-
-function QuickSearchToolbar(props: QuickSearchToolbarProps) {
+function QuickSearchToolbar(props: any) {
   return (
     <Box
       sx={{
