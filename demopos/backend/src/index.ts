@@ -38,7 +38,11 @@ AppDataSource.initialize()
         },
         (req, res, next) => {
           console.log("Pass2");
-          next();
+          if (req.query.passsport == "555") {
+            next();
+          } else {
+            res.end("No authorization2");
+          }
         },
         (req: Request, res: Response, next: Function) => {
           const result = new (route.controller as any)()[route.action](req, res, next);
