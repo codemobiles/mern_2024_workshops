@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from "express";
 import { Users } from "../entity/Users";
 import { savedValue } from "../utils/cm-util";
 import * as bcrypt from "bcryptjs";
+import jwt from "../utils/jwt";
 
 export class UserController {
   private userRepository = AppDataSource.getMongoRepository(Users);
@@ -38,7 +39,7 @@ export class UserController {
             level: doc.level,
             username: doc.username,
           };
-          let token = "1234"; //jwt.sign(payload);
+          let token = jwt.sign(payload);
 
           return { result: "ok", token, message: "success" };
         } else {
