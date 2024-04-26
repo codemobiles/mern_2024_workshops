@@ -1,5 +1,7 @@
 import * as React from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { useAppDispatch } from "@/store/store";
+import { getTransactions } from "@/store/slices/shopSlice";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 70 },
@@ -26,6 +28,12 @@ const rows = [
 ];
 
 export default function TransactionPage() {
+  const dispatch = useAppDispatch();
+
+  React.useEffect(() => {
+    dispatch(getTransactions());
+  }, [dispatch]);
+
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid
