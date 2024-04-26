@@ -24,9 +24,11 @@ axios.interceptors.response.use(
     return response;
   },
   async (error) => {
-    console.log(JSON.stringify(error, undefined, 2));
-    const store = () => import("@/store/store");
-    (await store()).default.dispatch(logout());
+    if (error.response.status == 403) {
+      console.log(JSON.stringify(error, undefined, 2));
+      const store = () => import("@/store/store");
+      (await store()).default.dispatch(logout());
+    }
   }
 );
 
