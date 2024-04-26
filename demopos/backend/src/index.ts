@@ -5,6 +5,7 @@ import { Routes } from "./routes";
 import * as cors from "cors";
 import { exit } from "process";
 import myInterceptor from "./interceptor/my-interceptor";
+import jwt from "./utils/jwt";
 
 // Check ROOT_PATH
 console.log("echo $ROOT_PATH: " + process.env.ROOT_PATH);
@@ -30,6 +31,7 @@ AppDataSource.initialize()
         "/api/v2" + route.route,
         // myInterceptor.interceptor1,
         // myInterceptor.interceptor2,
+        jwt.verify,
         (req: Request, res: Response, next: Function) => {
           const result = new (route.controller as any)()[route.action](req, res, next);
           if (result instanceof Promise) {
